@@ -1,0 +1,25 @@
+%%
+%% VECTRA font settings
+%% Copyright (c) 2026 Yixuan Huang
+%%
+%% This file is part of VECTRA.
+%% Distributed under the Yixuan Huang Non-Commercial Attribution Template
+%% License Version 1.0.
+%%
+%% Official repository:
+%% https://github.com/yixnhuang/vectra
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vectra-fonts}[2026/06/29 v0.1.0 VECTRA font settings]
+
+\RequirePackage{iftex}
+
+\ifPDFTeX
+    \RequirePackage[T1]{fontenc}
+    \RequirePackage[utf8]{inputenc}
+\fi
+
+\RequirePackage{charter}
+
+\endinput

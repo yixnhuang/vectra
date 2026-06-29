@@ -1,0 +1,154 @@
+%%
+%% VECTRA layout primitives
+%% Copyright (c) 2026 Yixuan Huang
+%%
+%% This file is part of VECTRA.
+%% Distributed under the Yixuan Huang Non-Commercial Attribution Template
+%% License Version 1.0.
+%%
+%% Official repository:
+%% https://github.com/yixnhuang/vectra
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vectra-layout}[2026/06/29 v0.1.0 VECTRA layout primitives]
+
+\RequirePackage{xparse}
+\RequirePackage{enumitem}
+
+% ---------------------------------------------------------------------------
+% Bullet list style
+% ---------------------------------------------------------------------------
+
+\renewcommand\labelitemi{\raisebox{0.25ex}{\tiny$\bullet$}}
+
+\newenvironment{VectraBullets}{%
+    \begin{itemize}[
+        topsep=\VectraBulletTopSeparation,
+        parsep=0pt,
+        partopsep=0pt,
+        itemsep=\VectraBulletItemSeparation,
+        leftmargin=\VectraBulletLeftMargin
+    ]%
+}{%
+    \end{itemize}%
+}
+
+% ---------------------------------------------------------------------------
+% Internal layout lengths
+% ---------------------------------------------------------------------------
+
+\newlength{\VectraLeftColumnWidth}
+
+\newcommand{\Vectra@UpdateLeftColumnWidth}{%
+    \setlength{\VectraLeftColumnWidth}{%
+        \dimexpr\textwidth-\VectraRightColumnWidth-\VectraColumnSeparation\relax
+    }%
+}
+
+% ---------------------------------------------------------------------------
+% One-column block
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\Vectra@OneColumnBlock}{+m}{%
+    \begin{adjustwidth}{0pt}{0pt}
+        #1%
+    \end{adjustwidth}%
+}
+
+% ---------------------------------------------------------------------------
+% Two-column block
+%
+% Argument 1: right column content
+% Argument 2: left column content
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\Vectra@FinalStrut}{}{%
+    \unskip\VectraEntryStrut
+}
+
+\NewDocumentCommand{\Vectra@TwoColumnBlock}{m +m}{%
+    \par\noindent
+    \begingroup
+    \Vectra@UpdateLeftColumnWidth
+    \begin{minipage}[t]{\VectraLeftColumnWidth}
+        \vspace{0pt}%
+        \raggedright
+        \linespread{\VectraEntryLineStretch}\selectfont
+        #2\Vectra@FinalStrut
+    \end{minipage}%
+    \hspace{\VectraColumnSeparation}%
+    \begin{minipage}[t]{\VectraRightColumnWidth}
+        \vspace{0pt}%
+        \raggedleft
+        \linespread{\VectraEntryLineStretch}\selectfont
+        #1\Vectra@FinalStrut
+    \end{minipage}%
+    \par
+    \endgroup
+}
+
+% ---------------------------------------------------------------------------
+% Last entry gap tracking
+%
+% Entry commands add spacing after each entry. When a new section begins,
+% VECTRA cancels the last trailing entry gap so that section-to-section spacing
+% is controlled only by section spacing.
+% ---------------------------------------------------------------------------
+
+\newlength{\VectraLastEntryGap}
+\setlength{\VectraLastEntryGap}{0pt}
+
+\NewDocumentCommand{\Vectra@SetLastEntryGap}{m}{%
+    \setlength{\VectraLastEntryGap}{#1}%
+}
+
+\NewDocumentCommand{\Vectra@ClearLastEntryGap}{}{%
+    \setlength{\VectraLastEntryGap}{0pt}%
+}
+
+\NewDocumentCommand{\Vectra@CancelLastEntryGap}{}{%
+    \ifdim\VectraLastEntryGap>0pt
+        \vspace{-\VectraLastEntryGap}%
+    \fi
+    \Vectra@ClearLastEntryGap
+}
+
+% ---------------------------------------------------------------------------
+% Entry spacing helpers
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\Vectra@EducationGap}{}{%
+    \par\vspace{\VectraEducationEntrySeparation}%
+    \Vectra@SetLastEntryGap{\VectraEducationEntrySeparation}%
+}
+
+\NewDocumentCommand{\Vectra@NormalGap}{}{%
+    \par\vspace{\VectraNormalEntrySeparation}%
+    \Vectra@SetLastEntryGap{\VectraNormalEntrySeparation}%
+}
+
+\NewDocumentCommand{\Vectra@CompactGap}{}{%
+    \par\vspace{\VectraCompactEntrySeparation}%
+    \Vectra@SetLastEntryGap{\VectraCompactEntrySeparation}%
+}
+
+\NewDocumentCommand{\Vectra@SkillGap}{}{%
+    \par\vspace{\VectraSkillEntrySeparation}%
+    \Vectra@SetLastEntryGap{\VectraSkillEntrySeparation}%
+}
+
+\NewDocumentCommand{\Vectra@BeforeBullets}{}{%
+    \par\vspace{\VectraEntryBulletSeparation}%
+}
+
+% ---------------------------------------------------------------------------
+% Optional note block
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\VectraEntryNote}{+m}{%
+    \Vectra@OneColumnBlock{#1}%
+    \Vectra@CompactGap
+}
+
+\endinput

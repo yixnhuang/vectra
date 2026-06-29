@@ -1,0 +1,25 @@
+%%
+%% VECTRA minimal example
+%%
+%% This example demonstrates the smallest recommended VECTRA structure.
+%% Users should edit profile.tex, settings.tex, and files in sections/.
+%%
+
+\makeatletter
+\def\input@path{{../../src/}{src/}{examples/minimal/}{./}}
+\makeatother
+
+\documentclass{vectra}
+
+\input{profile.tex}
+\input{settings.tex}
+
+\begin{document}
+
+\VectraMakeHeader
+
+\input{sections/education.tex}
+\input{sections/experience.tex}
+\input{sections/skills.tex}
+
+\end{document}

@@ -1,0 +1,30 @@
+%%
+%% VECTRA academic CV example
+%%
+%% This example demonstrates a research-oriented academic CV structure.
+%% Users should edit profile.tex, settings.tex, and files in sections/.
+%%
+
+\makeatletter
+\def\input@path{{../../src/}{src/}{examples/academic-cv/}{./}}
+\makeatother
+
+\documentclass{vectra}
+
+\input{profile.tex}
+\input{settings.tex}
+
+\begin{document}
+
+\VectraMakeHeader
+
+\input{sections/education.tex}
+\input{sections/research-interests.tex}
+\input{sections/publications.tex}
+\input{sections/research-experience.tex}
+\input{sections/projects.tex}
+\input{sections/awards.tex}
+\input{sections/leadership-service.tex}
+\input{sections/skills.tex}
+
+\end{document}

@@ -1,0 +1,212 @@
+Yixuan Huang Non-Commercial Attribution Template License
+Version 1.0
+
+Copyright (c) 2026 Yixuan Huang
+
+This license governs the use of VECTRA: Versatile Experience and Career
+Template for Research and Academia ("VECTRA", "the Template", or "the
+Project").
+
+VECTRA is a source-available LaTeX CV and resume template made available for
+personal academic, professional, and application use under the terms below.
+
+This license is not an open-source license as defined by the Open Source
+Initiative. It grants limited rights to use the Template while restricting
+redistribution, republication, commercial exploitation, and derivative template
+distribution.
+
+1. Definitions
+
+1.1. "Template Source" means all source files, style files, class files,
+documentation, examples, build scripts, configuration files, and other materials
+included in the VECTRA repository, including but not limited to files in:
+
+    src/
+    docs/
+    examples/
+    cv/main.tex
+    Makefile
+    latexmkrc
+    README.md
+    NOTICE
+    USAGE_POLICY.md
+
+1.2. "User-Editable Content Files" means files explicitly intended for users to
+edit for the purpose of creating their own CV or resume content, including:
+
+    cv/profile.tex
+    cv/settings.tex
+    cv/sections/*.tex
+
+and equivalent profile, settings, or section files in example directories when
+used only as a starting point for personal CV or resume content.
+
+1.3. "Generated Documents" means PDF files or other output documents generated
+by compiling VECTRA with user-provided personal content.
+
+1.4. "Official Repository" means the official VECTRA repository maintained by
+Yixuan Huang:
+
+    https://github.com/yixnhuang/vectra
+
+If the repository URL changes, the official repository is the location
+designated by Yixuan Huang as the authoritative source for VECTRA.
+
+1.5. "Commercial Use" means use primarily intended for commercial advantage,
+monetary compensation, paid services, resale, redistribution as part of a
+commercial product, inclusion in a paid template collection, or use in providing
+CV, resume, design, consulting, recruiting, or document-preparation services to
+others for compensation.
+
+Personal use of Generated Documents for academic applications, fellowship
+applications, job applications, internship applications, personal websites, or
+professional self-presentation is not considered Commercial Use under this
+license.
+
+2. Grant of Permission
+
+Subject to the terms of this license, you are granted a limited, non-exclusive,
+non-transferable, non-sublicensable license to:
+
+2.1. Download or clone the Template Source from the Official Repository for
+personal use.
+
+2.2. Edit User-Editable Content Files for the purpose of creating your own CV,
+resume, academic profile, application document, or similar personal document.
+
+2.3. Compile the Template with your own content to create Generated Documents.
+
+2.4. Use, submit, upload, print, email, publish, or otherwise share your
+Generated Documents for personal academic, professional, and application
+purposes.
+
+2.5. Share or recommend VECTRA by linking to or citing the Official Repository.
+
+3. Generated Documents
+
+3.1. You retain ownership of your own personal content, including your name,
+contact information, education history, work history, research experience,
+projects, awards, publications, skills, and other user-provided information.
+
+3.2. Generated Documents created by filling VECTRA with your own personal
+content may be used and shared without visible attribution to VECTRA or Yixuan
+Huang.
+
+3.3. This license does not require your generated CV or resume PDF to display a
+license notice, citation, watermark, footer attribution, or visible credit.
+
+3.4. If you publicly describe, recommend, review, or share the Template itself,
+you must cite or link to the Official Repository.
+
+4. Restrictions
+
+You may not:
+
+4.1. Redistribute, republish, mirror, upload, rehost, or otherwise make available
+the Template Source or any substantial portion of it outside the Official
+Repository.
+
+4.2. Publish a modified version of the Template Source.
+
+4.3. Create, distribute, or publish another template, repository, package,
+project, product, or service based on VECTRA or any substantial portion of the
+Template Source.
+
+4.4. Incorporate VECTRA into another public or private template collection,
+template gallery, resume builder, document generator, software package, or
+repository intended for redistribution.
+
+4.5. Sell, license, sublicense, rent, lease, or commercially exploit VECTRA or
+any modified version of VECTRA.
+
+4.6. Use VECTRA to provide paid CV, resume, application, design, document
+preparation, recruiting, or consulting services to third parties without prior
+written permission from Yixuan Huang.
+
+4.7. Remove, obscure, or alter copyright notices, license notices, repository
+references, or attribution notices contained in the Template Source.
+
+4.8. Misrepresent VECTRA as your own template or imply that your modified
+template source is an official version.
+
+4.9. Use the name "VECTRA", "Yixuan Huang", or related project branding to imply
+endorsement, sponsorship, or affiliation without prior written permission.
+
+5. Permitted Content Editing
+
+5.1. You may modify User-Editable Content Files to create your own CV or resume.
+
+5.2. You may add, remove, or reorder CV entries inside User-Editable Content
+Files.
+
+5.3. You may replace example personal information with your own information.
+
+5.4. You may not modify Template Source files for the purpose of creating,
+publishing, redistributing, or maintaining a modified template.
+
+6. Sharing and Citation
+
+6.1. To share VECTRA with others, link to or cite the Official Repository.
+
+6.2. You may not upload, mirror, or repost copies of the Template Source.
+
+6.3. Suggested citation format:
+
+    Yixuan Huang. VECTRA: Versatile Experience and Career Template for Research
+    and Academia. GitHub repository:
+    https://github.com/yixnhuang/vectra
+
+7. Contributions
+
+7.1. Contributions to the Official Repository may be accepted at the discretion
+of Yixuan Huang.
+
+7.2. By submitting a contribution, you agree that your contribution may be
+incorporated into VECTRA and distributed under this license or a future version
+of this license.
+
+7.3. Submission of a contribution does not grant you ownership of VECTRA or the
+right to redistribute the Template Source outside the Official Repository.
+
+8. Termination
+
+8.1. Your rights under this license terminate automatically if you violate any
+term of this license.
+
+8.2. Upon termination, you must stop using the Template Source and delete any
+unauthorized copies, redistributions, mirrors, or modified template versions in
+your possession or control.
+
+8.3. Termination does not affect your right to continue using Generated
+Documents that were lawfully created before the violation, provided that such
+Generated Documents do not contain redistributed Template Source.
+
+9. No Warranty
+
+VECTRA is provided "as is", without warranty of any kind, express or implied,
+including but not limited to warranties of merchantability, fitness for a
+particular purpose, non-infringement, correctness, compatibility, or suitability
+for any academic, professional, employment, immigration, legal, or application
+purpose.
+
+Use of VECTRA is at your own risk.
+
+10. Limitation of Liability
+
+In no event shall Yixuan Huang be liable for any claim, damages, loss, liability,
+rejection, missed opportunity, employment outcome, application outcome, data
+loss, or other consequence arising from the use of, inability to use, or reliance
+on VECTRA or any Generated Document.
+
+11. Future Versions
+
+Yixuan Huang may publish revised versions of this license. Each version will be
+identified by a version number. The Template Source is governed by the license
+version included with the copy you received, unless otherwise stated by Yixuan
+Huang.
+
+12. Contact
+
+For permission requests, commercial licensing inquiries, or other questions,
+contact Yixuan Huang through the Official Repository or the contact information
+provided therein.

@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use or recommend VECTRA, please cite the official repository."
+title: "VECTRA: Versatile Experience and Career Template for Research and Academia"
+type: software
+authors:
+  - family-names: Huang
+    given-names: Yixuan
+repository-code: "https://github.com/yixnhuang/vectra"
+url: "https://github.com/yixnhuang/vectra"
+abstract: "A source-available LaTeX CV and resume template for academic, research, professional, and application use."
+version: "0.1.0"
+license: "LicenseRef-Yixuan-Huang-Non-Commercial-Attribution-Template-License-1.0"
+keywords:
+  - CV
+  - resume
+  - academic CV
+  - LaTeX
+  - template
+  - research
+  - applications
+preferred-citation:
+  type: software
+  title: "VECTRA: Versatile Experience and Career Template for Research and Academia"
+  authors:
+    - family-names: Huang
+      given-names: Yixuan
+  repository-code: "https://github.com/yixnhuang/vectra"
+  url: "https://github.com/yixnhuang/vectra"
+  version: "0.1.0"

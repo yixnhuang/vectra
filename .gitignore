@@ -1,0 +1,79 @@
+# ---------------------------------------------------------------------------
+# VECTRA .gitignore
+# ---------------------------------------------------------------------------
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.dvi
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# LaTeX build directories
+build/
+_build/
+latex.out/
+
+# Generated PDFs
+*.pdf
+
+# Keep selected preview assets
+!docs/assets/*.pdf
+!docs/assets/*.png
+!docs/assets/*.jpg
+!docs/assets/*.jpeg
+!docs/assets/.gitkeep
+
+# Generated output directory
+output/*
+!output/.gitkeep
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Operating system files
+Thumbs.db
+
+# Backup files
+*.bak
+*.tmp
+*.old
+
+# Python cache, if scripts are added later
+__pycache__/
+*.pyc
+
+# Shell script logs
+*.log.*
+
+# TeX Live / latexmk temporary files
+*.listing
+*.makefile
+
+# Local personal CV content
+cv/*
+!cv/
+!cv/README.md

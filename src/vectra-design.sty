@@ -1,0 +1,226 @@
+%%
+%% VECTRA design parameters
+%% Copyright (c) 2026 Yixuan Huang
+%%
+%% This file is part of VECTRA.
+%% Distributed under the Yixuan Huang Non-Commercial Attribution Template
+%% License Version 1.0.
+%%
+%% Official repository:
+%% https://github.com/yixnhuang/vectra
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vectra-design}[2026/06/29 v0.1.0 VECTRA design parameters]
+
+% ---------------------------------------------------------------------------
+% Page geometry
+% ---------------------------------------------------------------------------
+%
+% These lengths define the default printable page area.
+%
+% VECTRA intentionally uses moderate academic margins rather than extremely
+% compressed resume-style margins. This improves readability and gives the
+% footer enough room to breathe.
+%
+% These values are maintainer-facing design parameters, not public user-facing
+% customization options.
+
+\newlength{\VectraMarginTop}
+\newlength{\VectraMarginBottom}
+\newlength{\VectraMarginLeft}
+\newlength{\VectraMarginRight}
+\newlength{\VectraFooterSkip}
+
+\setlength{\VectraMarginTop}{1.60cm}
+\setlength{\VectraMarginBottom}{2.00cm}
+\setlength{\VectraMarginLeft}{2.15cm}
+\setlength{\VectraMarginRight}{2.15cm}
+\setlength{\VectraFooterSkip}{0.70cm}
+
+% ---------------------------------------------------------------------------
+% Header typography and spacing
+% ---------------------------------------------------------------------------
+%
+% The header uses a centered academic style:
+%
+%   Name
+%   contact links
+%
+% \VectraHeaderNameContactSpace controls the vertical distance between the
+% name and the contact line.
+%
+% \VectraHeaderBottomSpace controls the distance between the contact line and
+% the first section title. Keep this relatively small so the header feels
+% connected to the document body.
+
+\newcommand{\VectraNameFont}{\fontsize{28pt}{32pt}\selectfont}
+\newcommand{\VectraContactFont}{\normalsize}
+
+\newlength{\VectraHeaderNameContactSpace}
+\newlength{\VectraHeaderBottomSpace}
+
+\setlength{\VectraHeaderNameContactSpace}{0.15cm}
+\setlength{\VectraHeaderBottomSpace}{0.16cm}
+
+% ---------------------------------------------------------------------------
+% Global line spacing
+% ---------------------------------------------------------------------------
+%
+% VECTRA keeps line spacing close to the LaTeX default for a compact academic
+% CV appearance.
+%
+% \VectraBodyLineStretch applies to the overall document body.
+% \VectraEntryLineStretch applies inside structured entry blocks.
+%
+% \VectraEntryBreak is used instead of raw "\\" inside entry definitions. It
+% inserts a strut before the line break so that lines with and without
+% descenders, such as g/y/p/q, have consistent visual depth. This prevents
+% uneven-looking spacing before bullet lists or following content.
+
+\newcommand{\VectraBodyLineStretch}{1}
+\newcommand{\VectraEntryLineStretch}{1}
+
+\newlength{\VectraEntryLineBreakSpace}
+\setlength{\VectraEntryLineBreakSpace}{1pt}
+
+\newcommand{\VectraEntryStrut}{\strut}
+\newcommand{\VectraEntryBreak}{\VectraEntryStrut\\[\VectraEntryLineBreakSpace]}
+
+% ---------------------------------------------------------------------------
+% Section typography and spacing
+% ---------------------------------------------------------------------------
+%
+% Section spacing has two separate responsibilities:
+%
+%   \VectraSectionTopSpace
+%       Space before a new section title.
+%
+%   \VectraSectionBottomSpace
+%       Space after the section title/rule and before the first entry.
+%
+% Section-to-section consistency also depends on the layout layer cancelling
+% trailing entry gaps before a new section begins. Do not compensate here for
+% entry spacing differences; use the entry spacing parameters below instead.
+
+\newcommand{\VectraSectionFont}{\large\bfseries}
+
+\newlength{\VectraSectionTopSpace}
+\newlength{\VectraSectionBottomSpace}
+\newlength{\VectraSectionRuleSpace}
+\newlength{\VectraSectionRuleThickness}
+
+\setlength{\VectraSectionTopSpace}{0.32cm}
+\setlength{\VectraSectionBottomSpace}{0.14cm}
+\setlength{\VectraSectionRuleSpace}{1pt}
+\setlength{\VectraSectionRuleThickness}{0.4pt}
+
+% ---------------------------------------------------------------------------
+% Entry layout
+% ---------------------------------------------------------------------------
+%
+% \VectraRightColumnWidth controls the width of the right-aligned metadata
+% column used for dates and locations.
+%
+% \VectraColumnSeparation controls the horizontal space between the left content
+% column and the right metadata column.
+%
+% Entry spacing is separated by entry type:
+%
+%   Education entries
+%       Visually shorter and usually bullet-free. They use a dedicated spacing
+%       parameter so the Education section can be tuned independently.
+%
+%   Normal entries
+%       Used for Research Experience, Projects, and Publications.
+%
+%   Compact entries
+%       Used for Awards, Service, and Certifications.
+%
+%   Skill entries
+%       Used for dense skill-group lines.
+%
+% The layout layer records trailing entry gaps and cancels them before new
+% sections, which keeps section-to-section spacing consistent.
+
+\newlength{\VectraRightColumnWidth}
+\newlength{\VectraColumnSeparation}
+\newlength{\VectraEducationEntrySeparation}
+\newlength{\VectraNormalEntrySeparation}
+\newlength{\VectraCompactEntrySeparation}
+\newlength{\VectraSkillEntrySeparation}
+
+\setlength{\VectraRightColumnWidth}{4.45cm}
+\setlength{\VectraColumnSeparation}{0.22cm}
+
+% Education entries are visually shorter than experience/project entries,
+% so they use a dedicated spacing parameter.
+\setlength{\VectraEducationEntrySeparation}{0.24cm}
+
+% Main spacing for Research Experience, Projects, and Publications.
+\setlength{\VectraNormalEntrySeparation}{0.12cm}
+
+% Compact spacing for dense sections such as Awards, Service, and
+% Certifications.
+\setlength{\VectraCompactEntrySeparation}{0cm}
+
+% Minimal spacing for skill groups.
+\setlength{\VectraSkillEntrySeparation}{0.07cm}
+
+% ---------------------------------------------------------------------------
+% Bullet lists
+% ---------------------------------------------------------------------------
+%
+% Bullet lists are intentionally compact.
+%
+% The itemize environment's own top spacing is set to zero so that list
+% environments do not introduce unpredictable vertical space. The explicit
+% distance between an entry metadata block and its bullet list is controlled by
+% \VectraEntryBulletSeparation.
+%
+% This separation is different from entry-to-entry spacing. It only controls:
+%
+%   entry information block
+%   -> bullet list
+%
+% not:
+%
+%   one entry
+%   -> next entry
+
+\newlength{\VectraBulletLeftMargin}
+\newlength{\VectraBulletTopSeparation}
+\newlength{\VectraBulletItemSeparation}
+
+\setlength{\VectraBulletLeftMargin}{12pt}
+\setlength{\VectraBulletTopSeparation}{0pt}
+\setlength{\VectraBulletItemSeparation}{0pt}
+
+\newlength{\VectraEntryBulletSeparation}
+\setlength{\VectraEntryBulletSeparation}{2.5pt}
+
+% ---------------------------------------------------------------------------
+% Footer
+% ---------------------------------------------------------------------------
+%
+% Footer text is intentionally small and unobtrusive.
+%
+% The footer layer may use three visual zones:
+%
+%   left:   update date
+%   center: name
+%   right:  page number
+
+\newcommand{\VectraFooterFont}{\small}
+\newcommand{\VectraFooterPagePrefix}{Page}
+
+% ---------------------------------------------------------------------------
+% Contact separator
+% ---------------------------------------------------------------------------
+%
+% The default header contact separator is a vertical bar with modest horizontal
+% spacing. Icons are intentionally not used in the default academic style.
+
+\newcommand{\VectraContactSeparator}{\hspace{5pt}\textbar\hspace{5pt}}
+
+\endinput

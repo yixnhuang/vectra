@@ -1,0 +1,111 @@
+%%
+%% VECTRA header settings
+%% Copyright (c) 2026 Yixuan Huang
+%%
+%% This file is part of VECTRA.
+%% Distributed under the Yixuan Huang Non-Commercial Attribution Template
+%% License Version 1.0.
+%%
+%% Official repository:
+%% https://github.com/yixnhuang/vectra
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vectra-header}[2026/06/29 v0.1.0 VECTRA header settings]
+
+\newcommand{\Vectra@name}{}
+\newcommand{\Vectra@email}{}
+\newcommand{\Vectra@website}{}
+\newcommand{\Vectra@github}{}
+\newcommand{\Vectra@linkedin}{}
+\newcommand{\Vectra@orcid}{}
+\newcommand{\Vectra@phone}{}
+\newcommand{\Vectra@location}{}
+\newcommand{\Vectra@title}{}
+
+\newcommand{\VectraSetName}[1]{\renewcommand{\Vectra@name}{#1}}
+\newcommand{\VectraSetEmail}[1]{\renewcommand{\Vectra@email}{#1}}
+\newcommand{\VectraSetWebsite}[1]{\renewcommand{\Vectra@website}{#1}}
+\newcommand{\VectraSetGitHub}[1]{\renewcommand{\Vectra@github}{#1}}
+\newcommand{\VectraSetLinkedIn}[1]{\renewcommand{\Vectra@linkedin}{#1}}
+\newcommand{\VectraSetORCID}[1]{\renewcommand{\Vectra@orcid}{#1}}
+\newcommand{\VectraSetPhone}[1]{\renewcommand{\Vectra@phone}{#1}}
+\newcommand{\VectraSetLocation}[1]{\renewcommand{\Vectra@location}{#1}}
+\newcommand{\VectraSetTitle}[1]{\renewcommand{\Vectra@title}{#1}}
+
+\newif\ifVectra@contactprinted
+
+\NewDocumentCommand{\Vectra@ContactItem}{m}{%
+    \ifVectra@contactprinted
+        \VectraContactSeparator
+    \fi
+    #1%
+    \Vectra@contactprintedtrue
+}
+
+\NewDocumentCommand{\Vectra@ContactEmail}{}{%
+    \ifdefempty{\Vectra@email}{}{%
+        \Vectra@ContactItem{\href{mailto:\Vectra@email}{\Vectra@email}}%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactWebsite}{}{%
+    \ifdefempty{\Vectra@website}{}{%
+        \Vectra@ContactItem{\href{\Vectra@website}{\Vectra@website}}%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactGitHub}{}{%
+    \ifdefempty{\Vectra@github}{}{%
+        \Vectra@ContactItem{\href{\Vectra@github}{GitHub}}%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactLinkedIn}{}{%
+    \ifdefempty{\Vectra@linkedin}{}{%
+        \Vectra@ContactItem{\href{\Vectra@linkedin}{LinkedIn}}%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactORCID}{}{%
+    \ifdefempty{\Vectra@orcid}{}{%
+        \Vectra@ContactItem{\href{https://orcid.org/\Vectra@orcid}{ORCID: \Vectra@orcid}}%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactPhone}{}{%
+    \ifdefempty{\Vectra@phone}{}{%
+        \Vectra@ContactItem{\href{tel:\Vectra@phone}{\Vectra@phone}}%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactLocation}{}{%
+    \ifdefempty{\Vectra@location}{}{%
+        \Vectra@ContactItem{\Vectra@location}%
+    }%
+}
+
+\NewDocumentCommand{\VectraMakeHeader}{}{%
+    \begin{center}
+        {\VectraNameFont \Vectra@name\par}
+        \ifdefempty{\Vectra@title}{}{%
+            \vspace{0.05cm}
+            {\normalsize \Vectra@title\par}
+        }%
+        \vspace{\VectraHeaderNameContactSpace}
+        {\VectraContactFont
+            \Vectra@contactprintedfalse
+            \Vectra@ContactEmail
+            \Vectra@ContactWebsite
+            \Vectra@ContactGitHub
+            \Vectra@ContactLinkedIn
+            \Vectra@ContactORCID
+            \Vectra@ContactPhone
+            \Vectra@ContactLocation
+            \par
+        }
+    \end{center}
+    \vspace{\VectraHeaderBottomSpace}
+}
+
+\endinput
