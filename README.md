@@ -54,6 +54,7 @@ with VECTRA.
 <p align="center">
   <img src="./docs/assets/vectra-academic-cv-example-page-3.png" alt="VECTRA academic CV example page 3" width="45%">
 </p>
+
 ## Examples
 
 Example source files are available in:
