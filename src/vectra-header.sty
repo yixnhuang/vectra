@@ -11,7 +11,11 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-header}[2026/06/29 v0.1.0 VECTRA header settings]
+\ProvidesPackage{vectra-header}[2026/06/30 v0.2.0 VECTRA header settings]
+
+% ---------------------------------------------------------------------------
+% Profile fields
+% ---------------------------------------------------------------------------
 
 \newcommand{\Vectra@name}{}
 \newcommand{\Vectra@email}{}
@@ -33,15 +37,102 @@
 \newcommand{\VectraSetLocation}[1]{\renewcommand{\Vectra@location}{#1}}
 \newcommand{\VectraSetTitle}[1]{\renewcommand{\Vectra@title}{#1}}
 
+% ---------------------------------------------------------------------------
+% Header width
+% ---------------------------------------------------------------------------
+%
+% Users normally should not need to change this. Maintainers may tune the
+% default in vectra-design.sty. A public setter is provided for controlled
+% local adjustment.
+
+\NewDocumentCommand{\VectraSetHeaderWidth}{m}{%
+    \renewcommand{\VectraHeaderWidth}{#1}%
+}
+
+% ---------------------------------------------------------------------------
+% Custom contact items
+% ---------------------------------------------------------------------------
+%
+% Custom contact links are appended after the built-in contact fields.
+%
+% Example:
+%
+%   \VectraAddContactLink{Google Scholar}{https://scholar.google.com/...}
+%   \VectraAddContactLink{Lab}{https://example-lab.org}
+%
+% A text-only item can be added with:
+%
+%   \VectraAddContactText{Ann Arbor, MI}
+%
+% Empty display text is ignored. If a URL is empty, the display text is printed
+% as plain text.
+
+\newcommand{\Vectra@customcontacts}{}
+
+\NewDocumentCommand{\VectraAddContactLink}{m m}{%
+    \gappto\Vectra@customcontacts{%
+        \Vectra@ContactCustomLink{#1}{#2}%
+    }%
+}
+
+\NewDocumentCommand{\VectraAddContactText}{m}{%
+    \gappto\Vectra@customcontacts{%
+        \Vectra@ContactCustomText{#1}%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactCustomLink}{m m}{%
+    \ifblank{#1}{}{%
+        \ifblank{#2}{%
+            \Vectra@ContactItem{#1}%
+        }{%
+            \Vectra@ContactItem{\href{#2}{#1}}%
+        }%
+    }%
+}
+
+\NewDocumentCommand{\Vectra@ContactCustomText}{m}{%
+    \ifblank{#1}{}{%
+        \Vectra@ContactItem{#1}%
+    }%
+}
+
+% ---------------------------------------------------------------------------
+% Contact line wrapping
+% ---------------------------------------------------------------------------
+%
+% Contact items are kept as unbreakable units with \mbox.
+%
+% Separators are inserted with \discretionary. If no line break occurs, the
+% separator is printed. If a line break occurs at that point, the separator is
+% omitted, so no line ends with "|" and no line begins with "|".
+%
+% The no-break part uses primitive kerns and \char124 rather than
+% \VectraContactSeparator because \hspace and \textbar are not safe inside a
+% discretionary list.
+
 \newif\ifVectra@contactprinted
+
+\NewDocumentCommand{\Vectra@ContactSeparator}{}{%
+    \discretionary{}{}{%
+        \kern\VectraContactSeparatorSpace
+        \char124
+        \kern\VectraContactSeparatorSpace
+    }%
+}
 
 \NewDocumentCommand{\Vectra@ContactItem}{m}{%
     \ifVectra@contactprinted
-        \VectraContactSeparator
+        \Vectra@ContactSeparator
     \fi
-    #1%
+    \mbox{#1}%
     \Vectra@contactprintedtrue
+    \ignorespaces
 }
+
+% ---------------------------------------------------------------------------
+% Individual contact fields
+% ---------------------------------------------------------------------------
 
 \NewDocumentCommand{\Vectra@ContactEmail}{}{%
     \ifdefempty{\Vectra@email}{}{%
@@ -69,7 +160,7 @@
 
 \NewDocumentCommand{\Vectra@ContactORCID}{}{%
     \ifdefempty{\Vectra@orcid}{}{%
-        \Vectra@ContactItem{\href{https://orcid.org/\Vectra@orcid}{ORCID: \Vectra@orcid}}%
+        \Vectra@ContactItem{\href{https://orcid.org/\Vectra@orcid}{ORCID}}%
     }%
 }
 
@@ -85,25 +176,37 @@
     }%
 }
 
+\NewDocumentCommand{\Vectra@ContactCustomItems}{}{%
+    \Vectra@customcontacts
+}
+
+% ---------------------------------------------------------------------------
+% Header renderer
+% ---------------------------------------------------------------------------
+
 \NewDocumentCommand{\VectraMakeHeader}{}{%
     \begin{center}
-        {\VectraNameFont \Vectra@name\par}
-        \ifdefempty{\Vectra@title}{}{%
-            \vspace{0.05cm}
-            {\normalsize \Vectra@title\par}
-        }%
-        \vspace{\VectraHeaderNameContactSpace}
-        {\VectraContactFont
-            \Vectra@contactprintedfalse
-            \Vectra@ContactEmail
-            \Vectra@ContactWebsite
-            \Vectra@ContactGitHub
-            \Vectra@ContactLinkedIn
-            \Vectra@ContactORCID
-            \Vectra@ContactPhone
-            \Vectra@ContactLocation
-            \par
-        }
+        \begin{minipage}{\VectraHeaderWidth}
+            \centering
+            {\VectraNameFont \Vectra@name\par}
+            \ifdefempty{\Vectra@title}{}{%
+                \vspace{0.05cm}
+                {\normalsize \Vectra@title\par}
+            }%
+            \vspace{\VectraHeaderNameContactSpace}
+            {\VectraContactFont
+                \Vectra@contactprintedfalse
+                \Vectra@ContactEmail
+                \Vectra@ContactWebsite
+                \Vectra@ContactGitHub
+                \Vectra@ContactLinkedIn
+                \Vectra@ContactORCID
+                \Vectra@ContactPhone
+                \Vectra@ContactLocation
+                \Vectra@ContactCustomItems
+                \par
+            }%
+        \end{minipage}
     \end{center}
     \vspace{\VectraHeaderBottomSpace}
 }

@@ -33,7 +33,7 @@ It is suitable for:
 The template is designed around a modern academic CV layout:
 
 - Single-column body
-- Right-aligned dates and locations
+- Adaptive right-aligned metadata for dates, terms, and locations
 - Clean section titles with subtle rules
 - Compact but readable spacing
 - Black-and-white print-friendly style
@@ -41,15 +41,39 @@ The template is designed around a modern academic CV layout:
 - Minimal visual distractions
 - No icon dependency in the default style
 
-## Examples
+## Preview
 
-- [Minimal example PDF](./docs/assets/vectra-minimal-example.pdf)
-- [Academic CV example PDF](./docs/assets/vectra-academic-cv-example.pdf)
+The preview below shows selected pages from the academic CV example generated
+with VECTRA.
+
+<p align="center">
+  <img src="./docs/assets/vectra-academic-cv-example-page-1.png" alt="VECTRA academic CV example page 1" width="45%">
+  <img src="./docs/assets/vectra-academic-cv-example-page-2.png" alt="VECTRA academic CV example page 2" width="45%">
+</p>
+
+<p align="center">
+  <img src="./docs/assets/vectra-academic-cv-example-page-3.png" alt="VECTRA academic CV example page 3" width="45%">
+</p>
+## Examples
 
 Example source files are available in:
 
 - [`examples/minimal/`](./examples/minimal/)
 - [`examples/academic-cv/`](./examples/academic-cv/)
+
+Compiled example PDFs are available here:
+
+- [Minimal example PDF](./docs/assets/vectra-minimal-example.pdf)
+- [Academic CV example PDF](./docs/assets/vectra-academic-cv-example.pdf)
+
+The academic CV example demonstrates:
+
+- Publications with groups, notes, indexed labels, locations, and inline links
+- Talks with indexed labels and right-aligned dates
+- Media entries for interviews and press coverage
+- Teaching entries grouped by role
+- Adaptive right-side metadata columns
+- Customizable header links and constrained header width
 
 ## Important Usage Notice
 
@@ -96,6 +120,15 @@ For details, see:
 - Footer system with support for update date, name, and page number
 - PDF metadata support
 - Print-friendly link styling
+- Adaptive right metadata columns
+- Indexed compact publication records
+- Publication groups and publication notes
+- Talk entries with indexed labels and right-aligned dates
+- Media entries for interviews, press coverage, podcasts, and articles
+- Role-grouped teaching entries with right-aligned terms
+- Inline bracket-style links for publications, talks, media, and teaching
+- Configurable header width
+- Custom header contact links
 - Maintainer-facing design parameters separated from user-facing content
 
 ## Repository Structure
@@ -125,18 +158,7 @@ vectra/
 │   └── vectra-accessibility.sty
 │
 ├── cv/
-│   ├── main.tex
-│   ├── profile.tex
-│   ├── settings.tex
-│   └── sections/
-│       ├── education.tex
-│       ├── research-interests.tex
-│       ├── research-experience.tex
-│       ├── projects.tex
-│       ├── awards.tex
-│       ├── leadership-service.tex
-│       ├── skills.tex
-│       └── certifications.tex
+│   └── README.md
 │
 ├── examples/
 │   ├── minimal/
@@ -155,7 +177,15 @@ vectra/
 
 ## Quick Start
 
-Most users only need to edit files in:
+The public VECTRA repository does not track personal CV source files in `cv/`.
+
+To create your own local CV, copy one of the examples into `cv/`:
+
+```bash
+cp -r examples/academic-cv/* cv/
+```
+
+Then edit:
 
 ```text
 cv/profile.tex
@@ -182,6 +212,19 @@ Update your:
 - Location, if desired
 - PDF metadata
 
+You may also add custom header links:
+
+```latex
+\VectraAddContactLink{Google Scholar}{https://scholar.google.com/}
+\VectraAddContactLink{Lab}{https://example-lab.org}
+```
+
+You may constrain the header width:
+
+```latex
+\VectraSetHeaderWidth{0.86\textwidth}
+```
+
 ### 2. Edit your CV content
 
 Open files under:
@@ -195,6 +238,10 @@ Edit sections such as:
 - Education
 - Research interests
 - Research experience
+- Publications
+- Talks
+- Teaching experience
+- Media
 - Projects
 - Awards and honors
 - Leadership and service
@@ -259,6 +306,38 @@ The files in `src/` define the VECTRA template design and layout. They are part
 of the Template Source and are not intended for user customization or
 redistribution.
 
+## Academic Record Formats
+
+VECTRA supports indexed compact records for scholarly and public-facing content.
+
+### Publications
+
+```text
+[C1] Authors. Title. Venue, Year. Location. [Links]
+```
+
+### Talks
+
+```text
+[T1] Title. Event, Location. [Links]       Date
+```
+
+### Media
+
+```text
+[M1] Title. Outlet. [Links]                Date
+```
+
+### Teaching
+
+```text
+Role
+Institution, Course Title. [Links]         Term
+```
+
+These formats are designed to remain compact while supporting long academic
+records.
+
 ## Design Philosophy
 
 VECTRA follows a compact academic design philosophy.
@@ -304,18 +383,6 @@ Last updated: <date>           <Name>           Page X of Y
 This provides useful version information while keeping the document formal and
 balanced.
 
-## Examples
-
-The repository includes example documents:
-
-```text
-examples/minimal/
-examples/academic-cv/
-```
-
-The examples demonstrate how to fill in content. They are not intended to
-encourage style modification or template redistribution.
-
 ## Documentation
 
 Additional documentation is available in:
@@ -338,7 +405,8 @@ docs/maintainer-guide.md
 ```
 
 This file explains internal design parameters such as spacing, margins, footer
-layout, and typography. These settings are not part of the public user API.
+layout, adaptive metadata columns, and typography. These settings are not part
+of the public user API.
 
 ## Citation
 

@@ -11,7 +11,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-sections}[2026/06/29 v0.1.0 VECTRA section commands]
+\ProvidesPackage{vectra-sections}[2026/06/30 v0.2.0 VECTRA section commands]
 
 \RequirePackage{titlesec}
 
@@ -20,7 +20,7 @@
 % ---------------------------------------------------------------------------
 
 \titleformat{\section}
-    {\needspace{4\baselineskip}\VectraSectionFont}
+    {\needspace{\VectraSectionNeedSpace}\VectraSectionFont}
     {}
     {0pt}
     {}
@@ -34,14 +34,6 @@
 % ---------------------------------------------------------------------------
 % Internal line-building helpers
 % ---------------------------------------------------------------------------
-%
-% These helpers make optional fields safe.
-%
-% A field is printed only if its raw value is non-empty. If a field is empty,
-% it does not create a blank line, a label, or an extra line break.
-%
-% This is important for entries where fields such as advisor, topics,
-% technologies, date, location, issuer, or notes may be intentionally omitted.
 
 \newif\ifVectra@entrylineprinted
 
@@ -66,13 +58,184 @@
 }
 
 % ---------------------------------------------------------------------------
+% Compact inline field helpers
+% ---------------------------------------------------------------------------
+
+\newif\ifVectra@compactfieldprinted
+
+\NewDocumentCommand{\Vectra@BeginCompactFields}{}{%
+    \Vectra@compactfieldprintedfalse
+}
+
+\NewDocumentCommand{\Vectra@CompactField}{m m}{%
+    \ifblank{#1}{}{%
+        \ifVectra@compactfieldprinted
+            ,\space
+        \fi
+        #2%
+        \Vectra@compactfieldprintedtrue
+    }%
+}
+
+% ---------------------------------------------------------------------------
+% Publication link helpers
+% ---------------------------------------------------------------------------
+
+\newif\ifVectra@publicationlinkprinted
+
+\NewDocumentCommand{\VectraPublicationLink}{m m}{%
+    \ifblank{#1}{}{%
+        \ifVectra@publicationlinkprinted
+            \unskip\VectraPublicationLinkSeparator
+        \fi
+        \ifblank{#2}{[#1]}{[\href{#2}{#1}]}%
+        \Vectra@publicationlinkprintedtrue
+    }%
+    \ignorespaces
+}
+
+\NewDocumentCommand{\Vectra@PublicationLinksInline}{+m}{%
+    \ifblank{#1}{}{%
+        {\VectraPublicationLinkFont
+            \Vectra@publicationlinkprintedfalse
+            #1\unskip
+        }%
+    }%
+}
+
+% ---------------------------------------------------------------------------
+% Talk link helpers
+% ---------------------------------------------------------------------------
+
+\newif\ifVectra@talklinkprinted
+
+\NewDocumentCommand{\VectraTalkLink}{m m}{%
+    \ifblank{#1}{}{%
+        \ifVectra@talklinkprinted
+            \unskip\VectraTalkLinkSeparator
+        \fi
+        \ifblank{#2}{[#1]}{[\href{#2}{#1}]}%
+        \Vectra@talklinkprintedtrue
+    }%
+    \ignorespaces
+}
+
+\NewDocumentCommand{\Vectra@TalkLinksInline}{+m}{%
+    \ifblank{#1}{}{%
+        {\VectraTalkLinkFont
+            \Vectra@talklinkprintedfalse
+            #1\unskip
+        }%
+    }%
+}
+
+% ---------------------------------------------------------------------------
+% Media link helpers
+% ---------------------------------------------------------------------------
+
+\newif\ifVectra@medialinkprinted
+
+\NewDocumentCommand{\VectraMediaLink}{m m}{%
+    \ifblank{#1}{}{%
+        \ifVectra@medialinkprinted
+            \unskip\VectraMediaLinkSeparator
+        \fi
+        \ifblank{#2}{[#1]}{[\href{#2}{#1}]}%
+        \Vectra@medialinkprintedtrue
+    }%
+    \ignorespaces
+}
+
+\NewDocumentCommand{\Vectra@MediaLinksInline}{+m}{%
+    \ifblank{#1}{}{%
+        {\VectraMediaLinkFont
+            \Vectra@medialinkprintedfalse
+            #1\unskip
+        }%
+    }%
+}
+
+% ---------------------------------------------------------------------------
+% Teaching link helpers
+% ---------------------------------------------------------------------------
+
+\newif\ifVectra@teachinglinkprinted
+
+\NewDocumentCommand{\VectraTeachingLink}{m m}{%
+    \ifblank{#1}{}{%
+        \ifVectra@teachinglinkprinted
+            \unskip\VectraTeachingLinkSeparator
+        \fi
+        \ifblank{#2}{[#1]}{[\href{#2}{#1}]}%
+        \Vectra@teachinglinkprintedtrue
+    }%
+    \ignorespaces
+}
+
+\NewDocumentCommand{\Vectra@TeachingLinksInline}{+m}{%
+    \ifblank{#1}{}{%
+        {\VectraTeachingLinkFont
+            \Vectra@teachinglinkprintedfalse
+            #1\unskip
+        }%
+    }%
+}
+
+% ---------------------------------------------------------------------------
 % Section command
 % ---------------------------------------------------------------------------
 
 \NewDocumentCommand{\VectraSection}{m}{%
     \par
     \Vectra@CancelLastEntryGap
+    \Vectra@ResetSectionContent
     \section{#1}%
+}
+
+% ---------------------------------------------------------------------------
+% Group heading commands
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\VectraPublicationGroup}{m}{%
+    \par
+    \Vectra@CancelLastEntryGap
+    \vspace{\VectraPublicationGroupTopSpace}%
+    \noindent{\VectraPublicationGroupFont #1}%
+    \par\vspace{\VectraPublicationGroupBottomSpace}%
+    \Vectra@SetLastEntryGap{\VectraPublicationGroupBottomSpace}%
+}
+
+\NewDocumentCommand{\VectraTalkGroup}{m}{%
+    \par
+    \Vectra@CancelLastEntryGap
+    \ifVectra@sectionhascontent
+        \vspace{\VectraTalkGroupTopSpace}%
+    \fi
+    \noindent{\VectraTalkGroupFont #1}%
+    \par\vspace{\VectraTalkGroupBottomSpace}%
+    \Vectra@SetLastEntryGap{\VectraTalkGroupBottomSpace}%
+}
+
+\NewDocumentCommand{\VectraMediaGroup}{m}{%
+    \par
+    \Vectra@CancelLastEntryGap
+    \ifVectra@sectionhascontent
+        \vspace{\VectraMediaGroupTopSpace}%
+    \fi
+    \noindent{\VectraMediaGroupFont #1}%
+    \par\vspace{\VectraMediaGroupBottomSpace}%
+    \Vectra@SetLastEntryGap{\VectraMediaGroupBottomSpace}%
+}
+
+\NewDocumentCommand{\VectraTeachingGroup}{m}{%
+    \par
+    \Vectra@CancelLastEntryGap
+    \ifVectra@sectionhascontent
+        \vspace{\VectraTeachingGroupTopSpace}%
+    \fi
+    \noindent{\VectraTeachingGroupFont #1}%
+    \par\vspace{\VectraTeachingGroupBottomSpace}%
+    \Vectra@SetLastEntryGap{\VectraTeachingGroupBottomSpace}%
 }
 
 % ---------------------------------------------------------------------------
@@ -81,7 +244,7 @@
 
 \NewDocumentCommand{\VectraResearchInterests}{+m}{%
     \Vectra@OneColumnBlock{#1}%
-    \Vectra@NormalGap
+    \Vectra@MajorEntryGap
 }
 
 % ---------------------------------------------------------------------------
@@ -104,7 +267,7 @@
         \Vectra@EntryLine{#1}{\textbf{#1}}%
         \Vectra@EntryLine{#2}{#2}%
     }%
-    \Vectra@EducationGap
+    \Vectra@MajorEntryGap
 }
 
 % ---------------------------------------------------------------------------
@@ -133,13 +296,13 @@
         \Vectra@EntryLine{#5}{Advisor: #5}%
     }%
     \IfBlankTF{#7}{%
-        \Vectra@NormalGap
+        \Vectra@MajorEntryGap
     }{%
         \Vectra@BeforeBullets
         \begin{VectraBullets}
             #7%
         \end{VectraBullets}
-        \Vectra@NormalGap
+        \Vectra@MajorEntryGap
     }%
 }
 
@@ -169,13 +332,13 @@
         \Vectra@EntryLine{#6}{#6}%
     }%
     \IfBlankTF{#7}{%
-        \Vectra@NormalGap
+        \Vectra@MajorEntryGap
     }{%
         \Vectra@BeforeBullets
         \begin{VectraBullets}
             #7%
         \end{VectraBullets}
-        \Vectra@NormalGap
+        \Vectra@MajorEntryGap
     }%
 }
 
@@ -200,13 +363,13 @@
         \Vectra@EntryLine{#3}{\textit{#3}}%
     }%
     \IfBlankTF{#4}{%
-        \Vectra@NormalGap
+        \Vectra@MajorEntryGap
     }{%
         \Vectra@BeforeBullets
         \begin{VectraBullets}
             #4%
         \end{VectraBullets}
-        \Vectra@NormalGap
+        \Vectra@MajorEntryGap
     }%
 }
 
@@ -214,24 +377,136 @@
 % Publications
 %
 % Arguments:
-%   1 Authors
-%   2 Title
-%   3 Venue or status
-%   4 Year
+%   1 Prefix
+%   2 Authors
+%   3 Title
+%   4 Venue
+%   5 Year
+%   6 Location
+%   7 Links
 %
-% Venue/status and year may be left empty.
+% Format:
+%   [C1] Authors. Title. Venue, Year. Location. [Links]
 % ---------------------------------------------------------------------------
 
-\NewDocumentCommand{\VectraPublicationEntry}{mmmm}{%
+\NewDocumentCommand{\VectraPublicationEntry}{mmmmmmm}{%
+    \par
+    \begingroup
+    \setlength{\parindent}{0pt}%
+    \hangindent=\dimexpr\VectraPublicationPrefixWidth+\VectraPublicationPrefixSeparation\relax
+    \hangafter=1
+    \noindent
+    \makebox[\VectraPublicationPrefixWidth][l]{%
+        \ifblank{#1}{}{[#1]}%
+    }%
+    \hspace{\VectraPublicationPrefixSeparation}%
+    \ignorespaces
+    \ifblank{#2}{}{#2. }%
+    \ifblank{#3}{}{\textbf{#3}.}%
+    \ifblank{#4}{%
+        \ifblank{#5}{}{ #5.}%
+    }{%
+        \space\textit{#4}%
+        \ifblank{#5}{}{, #5}%
+        .%
+    }%
+    \ifblank{#6}{}{ #6.}%
+    \Vectra@PublicationLinksInline{#7}%
+    \par
+    \endgroup
+    \Vectra@RecordEntryGap
+}
+
+\NewDocumentCommand{\VectraPublicationNote}{+m}{%
+    \Vectra@OneColumnBlock{%
+        {\VectraPublicationNoteFont #1}%
+    }%
+    \par\vspace{\VectraPublicationNoteBottomSpace}%
+    \Vectra@SetLastEntryGap{\VectraPublicationNoteBottomSpace}%
+}
+
+% ---------------------------------------------------------------------------
+% Talks
+%
+% Arguments:
+%   1 Prefix
+%   2 Talk title
+%   3 Event, host, seminar, conference, workshop, or venue
+%   4 Location
+%   5 Links
+%   6 Date
+%
+% Format:
+%   [T1] Title. Event, Location. [Links]       Date
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\VectraTalkEntry}{mmmmmm}{%
+    \Vectra@IndexedTwoColumnBlock{#1}{%
+        \ifblank{#2}{}{\textbf{#2}. }%
+        \Vectra@BeginCompactFields
+        \Vectra@CompactField{#3}{\textit{#3}}%
+        \Vectra@CompactField{#4}{#4}%
+        \ifVectra@compactfieldprinted
+            .%
+        \fi
+        \Vectra@TalkLinksInline{#5}%
+    }{%
+        \ifblank{#6}{}{\textit{#6}}%
+    }%
+    \Vectra@RecordEntryGap
+}
+
+% ---------------------------------------------------------------------------
+% Media
+%
+% Arguments:
+%   1 Prefix
+%   2 Title
+%   3 Outlet
+%   4 Links
+%   5 Date
+%
+% Format:
+%   [M1] Title. Outlet. [Links]       Date
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\VectraMediaEntry}{mmmmm}{%
+    \Vectra@IndexedTwoColumnBlock{#1}{%
+        \ifblank{#2}{}{\textbf{#2}. }%
+        \ifblank{#3}{}{\textit{#3}.}%
+        \Vectra@MediaLinksInline{#4}%
+    }{%
+        \ifblank{#5}{}{\textit{#5}}%
+    }%
+    \Vectra@RecordEntryGap
+}
+
+% ---------------------------------------------------------------------------
+% Teaching
+%
+% Arguments:
+%   1 Institution
+%   2 Course title or teaching activity
+%   3 Links
+%   4 Term or date
+%
+% Format:
+%   Institution, Course Title. [Links]       Term
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\VectraTeachingEntry}{mmmm}{%
     \Vectra@TwoColumnBlock{%
-        \Vectra@MetaBlock{}{#4}%
+        \ifblank{#4}{}{\textit{#4}}%
     }{%
         \Vectra@BeginEntryLines
         \Vectra@EntryLine{#1}{#1}%
-        \Vectra@EntryLine{#2}{\textbf{#2}}%
-        \Vectra@EntryLine{#3}{\textit{#3}}%
+        \ifblank{#2}{}{%
+            \ifblank{#1}{}{\unskip,\space}%
+            \textbf{#2}.%
+        }%
+        \Vectra@TeachingLinksInline{#3}%
     }%
-    \Vectra@NormalGap
+    \Vectra@RecordEntryGap
 }
 
 % ---------------------------------------------------------------------------
@@ -282,8 +557,11 @@
 % Skills
 %
 % Arguments:
-%   1 Category
-%   2 Items
+%   1 Role
+%   2 Organization
+%   3 Date
+%
+% Organization and date may be left empty.
 % ---------------------------------------------------------------------------
 
 \NewDocumentCommand{\VectraSkillGroup}{mm}{%

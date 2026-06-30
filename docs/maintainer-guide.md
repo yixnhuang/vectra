@@ -12,6 +12,16 @@ VECTRA is designed as an opinionated, source-available LaTeX CV template.
 The goal is not to expose many customization options. Instead, the template
 should provide a fixed, polished, academic style with a small content-facing API.
 
+VECTRA should remain:
+
+- Academic
+- Compact
+- Readable
+- Print-friendly
+- Modular
+- Easy for users to fill in
+- Difficult for users to accidentally break
+
 ## Core Design Files
 
 The main template files are in:
@@ -43,9 +53,9 @@ Main document class.
 
 Responsibilities:
 
-- Load the base `article` class
-- Load VECTRA style modules
-- Provide the user-facing class entry point
+- Load the base `article` class.
+- Load VECTRA style modules.
+- Provide the user-facing class entry point.
 
 ### `vectra-design.sty`
 
@@ -55,14 +65,20 @@ This is the main file for tuning:
 
 - Margins
 - Header spacing
+- Header width
 - Name size
 - Section spacing
 - Section rule thickness
 - Entry spacing
-- Right metadata column width
+- Column separation
 - Bullet spacing
+- Publication prefix spacing
+- Talk and media prefix spacing
+- Group heading spacing
 - Footer typography
-- Contact separator
+- Contact separator spacing
+
+This file should contain design parameters, not entry rendering logic.
 
 ### `vectra-core.sty`
 
@@ -70,11 +86,11 @@ Core document behavior.
 
 Responsibilities:
 
-- Geometry setup
-- Paragraph behavior
-- No section numbering
-- Ragged-right body text
-- Core packages used across the template
+- Geometry setup.
+- Paragraph behavior.
+- No section numbering.
+- Ragged-right body text.
+- Core packages used across the template.
 
 ### `vectra-fonts.sty`
 
@@ -88,10 +104,10 @@ Charter
 
 Rationale:
 
-- Academic appearance
-- Compact width
-- Good print readability
-- More polished than default Computer Modern for CV use
+- Academic appearance.
+- Compact width.
+- Good print readability.
+- More polished than default Computer Modern for CV use.
 
 ### `vectra-colors.sty`
 
@@ -105,10 +121,10 @@ Black text and black links
 
 Rationale:
 
-- Print-friendly
-- Academic
-- Minimal
-- Avoids decorative resume styling
+- Print-friendly.
+- Academic.
+- Minimal.
+- Avoids decorative resume styling.
 
 ### `vectra-accessibility.sty`
 
@@ -116,10 +132,10 @@ PDF accessibility and metadata support.
 
 Responsibilities:
 
-- Unicode mapping for pdfLaTeX
-- PDF metadata
-- Hyperref setup
-- Bookmark support
+- Unicode mapping for pdfLaTeX.
+- PDF metadata.
+- Hyperref setup.
+- Bookmark support.
 
 ### `vectra-layout.sty`
 
@@ -127,10 +143,13 @@ Internal layout primitives.
 
 Responsibilities:
 
-- One-column blocks
-- Two-column entry layout
-- Bullet list styling
-- Internal spacing helpers
+- One-column blocks.
+- Adaptive two-column entry layout.
+- Indexed two-column layout for talks and media.
+- Bullet list styling.
+- Entry spacing helpers.
+- Trailing entry-gap tracking.
+- Section content tracking.
 
 These commands are internal and should not be documented as user-facing API.
 
@@ -140,10 +159,14 @@ Header data and rendering.
 
 Responsibilities:
 
-- Store profile fields
-- Render name and contact information
-- Hide empty fields
-- Keep default header icon-free
+- Store profile fields.
+- Render name and contact information.
+- Hide empty fields.
+- Keep default header icon-free.
+- Support constrained header width.
+- Support custom header contact links.
+- Keep contact items together during wrapping.
+- Avoid separators at line starts or line ends.
 
 ### `vectra-footer.sty`
 
@@ -157,11 +180,11 @@ Last updated: <date>           <Name>           Page X of Y
 
 Responsibilities:
 
-- Date mode
-- Footer mode
-- Centered name
-- Page numbering
-- Last updated text
+- Date mode.
+- Footer mode.
+- Centered name.
+- Page numbering.
+- Last updated text.
 
 ### `vectra-sections.sty`
 
@@ -170,10 +193,20 @@ User-facing content commands.
 Responsibilities:
 
 - `\VectraSection`
+- `\VectraResearchInterests`
 - `\VectraEducationEntry`
 - `\VectraResearchExperienceEntry`
+- `\VectraExperienceEntry`
 - `\VectraProjectEntry`
 - `\VectraPublicationEntry`
+- `\VectraPublicationNote`
+- `\VectraPublicationGroup`
+- `\VectraTalkEntry`
+- `\VectraTalkGroup`
+- `\VectraMediaEntry`
+- `\VectraMediaGroup`
+- `\VectraTeachingEntry`
+- `\VectraTeachingGroup`
 - `\VectraAwardEntry`
 - `\VectraServiceEntry`
 - `\VectraSkillGroup`
@@ -194,6 +227,10 @@ The stable user-facing commands are:
 \VectraSetLocation
 \VectraSetTitle
 
+\VectraSetHeaderWidth
+\VectraAddContactLink
+\VectraAddContactText
+
 \VectraSetPDFTitle
 \VectraSetPDFAuthor
 \VectraSetPDFSubject
@@ -210,7 +247,24 @@ The stable user-facing commands are:
 \VectraResearchExperienceEntry
 \VectraExperienceEntry
 \VectraProjectEntry
+
+\VectraPublicationNote
+\VectraPublicationGroup
 \VectraPublicationEntry
+\VectraPublicationLink
+
+\VectraTalkGroup
+\VectraTalkEntry
+\VectraTalkLink
+
+\VectraMediaGroup
+\VectraMediaEntry
+\VectraMediaLink
+
+\VectraTeachingGroup
+\VectraTeachingEntry
+\VectraTeachingLink
+
 \VectraAwardEntry
 \VectraServiceEntry
 \VectraSkillGroup
@@ -223,10 +277,13 @@ Internal commands include names containing `@`, such as:
 
 ```latex
 \Vectra@TwoColumnBlock
+\Vectra@IndexedTwoColumnBlock
 \Vectra@OneColumnBlock
-\Vectra@NormalGap
+\Vectra@MajorEntryGap
+\Vectra@RecordEntryGap
 \Vectra@CompactGap
 \Vectra@SkillGap
+\Vectra@MeasureRightColumn
 ```
 
 These should not be used directly in user content.
@@ -244,15 +301,37 @@ Name line height: 32pt
 Text alignment: ragged right
 Section title: bold, large
 Section rule: thin black rule
-Right metadata column: 4.45cm
-Footer: left date, center name, right page number
 Links: black
 Icons: disabled
 ```
 
-Most visual parameters are defined in `src/vectra-design.sty`. These parameters
-are maintainer-facing design tokens and are not intended as public user-facing
-customization options.
+## Entry Spacing Tokens
+
+VECTRA separates entry spacing into semantic spacing tokens.
+
+```text
+\VectraMajorEntrySeparation
+\VectraRecordEntrySeparation
+\VectraCompactEntrySeparation
+\VectraSkillEntrySeparation
+```
+
+Recommended usage:
+
+- `\VectraMajorEntrySeparation`  
+  Used for Education, Research Experience, General Experience, and Projects.
+
+- `\VectraRecordEntrySeparation`  
+  Used for Publications, Talks, Media, and Teaching.
+
+- `\VectraCompactEntrySeparation`  
+  Used for Awards, Service, and Certifications.
+
+- `\VectraSkillEntrySeparation`  
+  Used for skill groups.
+
+This distinction keeps narrative CV entries more readable while keeping longer
+record-style sections compact.
 
 ## Margin Tuning
 
@@ -262,10 +341,10 @@ Current baseline:
 
 ```text
 top:    1.60cm
-bottom: 2.00cm
-left:   2.15cm
-right:  2.15cm
-footer: 0.70cm
+bottom: 1.75cm
+left:   1.75cm
+right:  1.75cm
+footer: 0.75cm
 ```
 
 The bottom margin is intentionally larger than the top margin to provide enough
@@ -288,17 +367,46 @@ Name size: 28pt
 Name line height: 32pt
 Name-to-contact spacing: 0.15cm
 Header bottom spacing: 0.16cm
+Default header width: 0.86\textwidth
 ```
+
+Header width is controlled by:
+
+```latex
+\VectraHeaderWidth
+```
+
+Users may set it with:
+
+```latex
+\VectraSetHeaderWidth{0.86\textwidth}
+```
+
+Custom contact links can be added with:
+
+```latex
+\VectraAddContactLink{Display Text}{URL}
+```
+
+Text-only contact items can be added with:
+
+```latex
+\VectraAddContactText{Text}
+```
+
+Header contact items are kept as unbreakable units. Separators are omitted at
+line breaks so that no line ends or begins with a vertical bar.
 
 Tuning recommendations:
 
-- Use 26pt for a more compact look.
+- Use 26pt for a more compact name.
 - Use 28pt for the default academic compact style.
 - Avoid 32pt unless the CV has very little content.
+- Use a header width between `0.80\textwidth` and `0.90\textwidth` for most
+  documents.
+- Keep custom contact display text short.
 
 ## Section Tuning
-
-Current baseline:
 
 Current baseline:
 
@@ -328,31 +436,135 @@ Tuning recommendations:
 Current baseline:
 
 ```text
-Education entry separation: 0.24cm
-Normal entry separation: 0.12cm
+Major entry separation:  0.30cm
+Record entry separation: 0.12cm
 Compact entry separation: 0cm
-Skill entry separation: 0.07cm
-Right column width: 4.45cm
-Column separation: 0.22cm
+Skill entry separation:  0.07cm
+Column separation:       0.22cm
 ```
 
 Recommended usage:
 
-- Education entries use `\VectraEducationEntrySeparation`.
-- Research Experience, Projects, and Publications use
-  `\VectraNormalEntrySeparation`.
-- Awards, Service, and Certifications use
-  `\VectraCompactEntrySeparation`.
+- Major entries use `\VectraMajorEntrySeparation`.
+- Record entries use `\VectraRecordEntrySeparation`.
+- Compact entries use `\VectraCompactEntrySeparation`.
 - Skill groups use `\VectraSkillEntrySeparation`.
 
-Education entries are visually shorter and usually do not contain bullet lists,
-so they use a dedicated spacing parameter for better visual balance.
+## Adaptive Right Metadata Columns
 
-Recommended usage:
+VECTRA uses adaptive right metadata columns in two-column entries.
 
-- Education and research entries use normal spacing.
-- Awards and service entries use compact spacing.
-- Skill groups use minimal spacing.
+The layout layer measures the natural width of right-side metadata for each
+entry, then assigns the remaining width to the left column.
+
+This behavior is implemented in `src/vectra-layout.sty`.
+
+Benefits:
+
+- Short dates such as `2026` use minimal width.
+- Longer dates such as `Sep. 2022 -- Jun. 2026` remain unwrapped when possible.
+- The left column automatically receives more space when the right metadata is
+  short.
+- Talk, media, teaching, project, education, and experience entries share the
+  same adaptive layout behavior.
+
+Right-side metadata should remain short. Long descriptive text should be placed
+in the left-side content.
+
+## Indexed Academic Records
+
+VECTRA uses indexed compact academic records for Publications, Talks, and Media.
+
+Examples:
+
+```text
+[C1] Authors. Title. Venue, Year. Location. [Links]
+[T1] Title. Event, Location. [Links]       Date
+[M1] Title. Outlet. [Links]                Date
+```
+
+The indexed prefix is placed in a fixed-width label area. Wrapped lines align
+with the entry body rather than with the prefix.
+
+The implementation differs by section:
+
+- Publications use one-column hanging indentation.
+- Talks and Media use indexed two-column records with right-side dates.
+- Teaching uses role-grouped two-column records and is not indexed by default.
+
+## Publication Tuning
+
+Publication design parameters include:
+
+```text
+\VectraPublicationPrefixWidth
+\VectraPublicationPrefixSeparation
+\VectraPublicationLinkSeparator
+\VectraPublicationNoteBottomSpace
+\VectraPublicationGroupTopSpace
+\VectraPublicationGroupBottomSpace
+```
+
+Publication format:
+
+```text
+[C1] Authors. Title. Venue, Year. Location. [Links]
+```
+
+Publication links are bracket-style inline links:
+
+```text
+[Preprint] [Code] [BibTeX]
+```
+
+## Talk and Media Tuning
+
+Talk and Media records use indexed two-column layout.
+
+Talk format:
+
+```text
+[T1] Title. Event, Location. [Links]       Date
+```
+
+Media format:
+
+```text
+[M1] Title. Outlet. [Links]                Date
+```
+
+Talk and Media group spacing is controlled by:
+
+```text
+\VectraTalkGroupTopSpace
+\VectraTalkGroupBottomSpace
+\VectraMediaGroupTopSpace
+\VectraMediaGroupBottomSpace
+```
+
+The first group immediately after a section title should not add extra top
+spacing. Subsequent groups may use their configured top spacing.
+
+## Teaching Tuning
+
+Teaching entries are grouped by role.
+
+Format:
+
+```text
+Role
+Institution, Course Title. [Links]       Term
+```
+
+Teaching is not indexed by default because it is treated as an experience record
+rather than a publication-like scholarly output.
+
+Teaching group spacing is controlled by:
+
+```text
+\VectraTeachingGroupTopSpace
+\VectraTeachingGroupBottomSpace
+```
 
 ## Bullet Tuning
 
@@ -429,21 +641,39 @@ make distclean
 The Makefile uses `TEXINPUTS` to allow documents in `cv/` and `examples/` to
 find files in `src/`.
 
+## Versioning Guidance
+
+During development, modified source files may use:
+
+```text
+v0.2.0-dev
+```
+
+Before publishing a release, all core files in `src/` should be updated to the
+release version for consistency, for example:
+
+```text
+v0.2.0
+```
+
+This makes issue reports and release audits easier.
+
 ## Release Checklist
 
 Before publishing a release:
 
-- Compile personal CV.
-- Compile minimal example.
-- Compile academic CV example.
-- Check that no old usernames or stale links remain.
+- Compile the minimal example.
+- Compile the academic CV example.
 - Check that generated PDFs have correct metadata.
+- Check that no old usernames or stale links remain.
 - Check that license and usage policy are up to date.
 - Check that source files contain copyright notices.
 - Check that user documentation tells users not to edit `src/`.
 - Check that examples contain fictional or safe sample data.
+- Update preview PDFs and images in `docs/assets/`.
 - Update `CHANGELOG.md`.
 - Update `CITATION.cff` version if needed.
+- Create and push a release tag.
 
 ## Repository URL
 

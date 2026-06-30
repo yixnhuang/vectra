@@ -11,10 +11,11 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-layout}[2026/06/29 v0.1.0 VECTRA layout primitives]
+\ProvidesPackage{vectra-layout}[2026/06/30 v0.2.0 VECTRA layout primitives]
 
 \RequirePackage{xparse}
 \RequirePackage{enumitem}
+\RequirePackage{varwidth}
 
 % ---------------------------------------------------------------------------
 % Bullet list style
@@ -35,15 +36,44 @@
 }
 
 % ---------------------------------------------------------------------------
+% Final strut
+% ---------------------------------------------------------------------------
+%
+% This command must be defined before right-column measurement, because the
+% measurement helper uses it while boxing right-column metadata.
+
+\NewDocumentCommand{\Vectra@FinalStrut}{}{%
+    \unskip\VectraEntryStrut
+}
+
+% ---------------------------------------------------------------------------
 % Internal layout lengths
 % ---------------------------------------------------------------------------
+%
+% The right column is measured per entry. This allows metadata such as dates
+% and locations to keep their natural width while the left column automatically
+% uses the remaining space.
 
 \newlength{\VectraLeftColumnWidth}
+\newlength{\VectraRightColumnActualWidth}
+\newsavebox{\VectraRightColumnMeasureBox}
 
-\newcommand{\Vectra@UpdateLeftColumnWidth}{%
-    \setlength{\VectraLeftColumnWidth}{%
-        \dimexpr\textwidth-\VectraRightColumnWidth-\VectraColumnSeparation\relax
+\NewDocumentCommand{\Vectra@MeasureRightColumn}{+m}{%
+    \sbox{\VectraRightColumnMeasureBox}{%
+        \begin{varwidth}[t]{\textwidth}
+            \raggedleft
+            \linespread{\VectraEntryLineStretch}\selectfont
+            #1\Vectra@FinalStrut
+        \end{varwidth}%
     }%
+    \setlength{\VectraRightColumnActualWidth}{\wd\VectraRightColumnMeasureBox}%
+    \ifdim\VectraRightColumnActualWidth>0pt
+        \setlength{\VectraLeftColumnWidth}{%
+            \dimexpr\textwidth-\VectraRightColumnActualWidth-\VectraColumnSeparation\relax
+        }%
+    \else
+        \setlength{\VectraLeftColumnWidth}{\textwidth}%
+    \fi
 }
 
 % ---------------------------------------------------------------------------
@@ -61,46 +91,118 @@
 %
 % Argument 1: right column content
 % Argument 2: left column content
+%
+% The right column width is measured automatically. The implementation uses
+% \vtop rather than minipage for more stable top alignment between the left and
+% right columns.
 % ---------------------------------------------------------------------------
-
-\NewDocumentCommand{\Vectra@FinalStrut}{}{%
-    \unskip\VectraEntryStrut
-}
 
 \NewDocumentCommand{\Vectra@TwoColumnBlock}{m +m}{%
     \par\noindent
     \begingroup
-    \Vectra@UpdateLeftColumnWidth
-    \begin{minipage}[t]{\VectraLeftColumnWidth}
-        \vspace{0pt}%
+    \Vectra@MeasureRightColumn{#1}%
+    \leavevmode
+    \vtop{%
+        \hsize=\VectraLeftColumnWidth
+        \parindent=0pt
         \raggedright
         \linespread{\VectraEntryLineStretch}\selectfont
-        #2\Vectra@FinalStrut
-    \end{minipage}%
-    \hspace{\VectraColumnSeparation}%
-    \begin{minipage}[t]{\VectraRightColumnWidth}
-        \vspace{0pt}%
-        \raggedleft
-        \linespread{\VectraEntryLineStretch}\selectfont
-        #1\Vectra@FinalStrut
-    \end{minipage}%
+        \VectraEntryStrut#2\Vectra@FinalStrut\par
+    }%
+    \ifdim\VectraRightColumnActualWidth>0pt
+        \hspace{\VectraColumnSeparation}%
+        \vtop{%
+            \hsize=\VectraRightColumnActualWidth
+            \parindent=0pt
+            \raggedleft
+            \linespread{\VectraEntryLineStretch}\selectfont
+            \VectraEntryStrut#1\Vectra@FinalStrut\par
+        }%
+    \fi
     \par
     \endgroup
 }
 
 % ---------------------------------------------------------------------------
-% Last entry gap tracking
+% Indexed two-column block
+%
+% Argument 1: prefix, such as T1 or M1
+% Argument 2: left-column record body
+% Argument 3: right-column metadata
+%
+% The left column uses a true hanging indent. Wrapped lines align with the
+% record text, not with the prefix. The right column is measured automatically.
+% ---------------------------------------------------------------------------
+
+\NewDocumentCommand{\Vectra@IndexedTwoColumnBlock}{m +m +m}{%
+    \par\noindent
+    \begingroup
+    \Vectra@MeasureRightColumn{#3}%
+    \leavevmode
+    \vtop{%
+        \hsize=\VectraLeftColumnWidth
+        \parindent=0pt
+        \raggedright
+        \linespread{\VectraEntryLineStretch}\selectfont
+        \begingroup
+        \setlength{\parindent}{0pt}%
+        \hangindent=\dimexpr\VectraIndexedEntryPrefixWidth+\VectraIndexedEntryPrefixSeparation\relax
+        \hangafter=1
+        \noindent
+        \VectraEntryStrut
+        \makebox[\VectraIndexedEntryPrefixWidth][l]{%
+            \ifblank{#1}{}{[#1]}%
+        }%
+        \hspace{\VectraIndexedEntryPrefixSeparation}%
+        \ignorespaces
+        #2\unskip\VectraEntryStrut
+        \par
+        \endgroup
+    }%
+    \ifdim\VectraRightColumnActualWidth>0pt
+        \hspace{\VectraColumnSeparation}%
+        \vtop{%
+            \hsize=\VectraRightColumnActualWidth
+            \parindent=0pt
+            \raggedleft
+            \linespread{\VectraEntryLineStretch}\selectfont
+            \VectraEntryStrut#3\Vectra@FinalStrut\par
+        }%
+    \fi
+    \par
+    \endgroup
+}
+
+% ---------------------------------------------------------------------------
+% Section content and last entry gap tracking
 %
 % Entry commands add spacing after each entry. When a new section begins,
 % VECTRA cancels the last trailing entry gap so that section-to-section spacing
 % is controlled only by section spacing.
+%
+% VECTRA also tracks whether the current section has already printed content.
+% This allows group headings such as Talks, Media, and Teaching groups to avoid
+% adding extra top spacing when they are the first item immediately after a
+% section title.
 % ---------------------------------------------------------------------------
 
 \newlength{\VectraLastEntryGap}
 \setlength{\VectraLastEntryGap}{0pt}
 
+\newif\ifVectra@sectionhascontent
+\Vectra@sectionhascontentfalse
+
+\NewDocumentCommand{\Vectra@ResetSectionContent}{}{%
+    \Vectra@sectionhascontentfalse
+}
+
+\NewDocumentCommand{\Vectra@MarkSectionContent}{}{%
+    \Vectra@sectionhascontenttrue
+}
+
 \NewDocumentCommand{\Vectra@SetLastEntryGap}{m}{%
     \setlength{\VectraLastEntryGap}{#1}%
+    \Vectra@MarkSectionContent
 }
 
 \NewDocumentCommand{\Vectra@ClearLastEntryGap}{}{%
@@ -118,14 +220,14 @@
 % Entry spacing helpers
 % ---------------------------------------------------------------------------
 
-\NewDocumentCommand{\Vectra@EducationGap}{}{%
-    \par\vspace{\VectraEducationEntrySeparation}%
-    \Vectra@SetLastEntryGap{\VectraEducationEntrySeparation}%
+\NewDocumentCommand{\Vectra@MajorEntryGap}{}{%
+    \par\vspace{\VectraMajorEntrySeparation}%
+    \Vectra@SetLastEntryGap{\VectraMajorEntrySeparation}%
 }
 
-\NewDocumentCommand{\Vectra@NormalGap}{}{%
-    \par\vspace{\VectraNormalEntrySeparation}%
-    \Vectra@SetLastEntryGap{\VectraNormalEntrySeparation}%
+\NewDocumentCommand{\Vectra@RecordEntryGap}{}{%
+    \par\vspace{\VectraRecordEntrySeparation}%
+    \Vectra@SetLastEntryGap{\VectraRecordEntrySeparation}%
 }
 
 \NewDocumentCommand{\Vectra@CompactGap}{}{%

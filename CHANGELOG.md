@@ -8,16 +8,104 @@ maintainer-facing design changes should be recorded here.
 
 ## [Unreleased]
 
-### Planned for 0.2.0
+## [0.2.0] - 2026-06-30
 
-- Improve publication-related commands and formatting.
-- Add support for a dedicated Talks section.
-- Add semantic entry commands for invited talks, conference talks, seminars,
-  presentations, and posters.
-- Refine academic CV examples to demonstrate publications and talks.
-- Add documentation for publication and talk formatting conventions.
+### Added
 
-## [0.1.0] - 2026-06-29
+- Added publication groups for organizing publications into categories such as
+  Preprints, Conference Papers, Journal Articles, Workshop Papers, and Patents.
+- Added publication notes for explanatory text such as equal contribution notes.
+- Added updated publication entry format:
+
+  ```text
+  [C1] Authors. Title. Venue, Year. Location. [Links]
+  ```
+
+- Added support for publication locations.
+- Added inline bracket-style publication links, such as `[Preprint]`, `[Code]`,
+  `[DOI]`, `[PDF]`, and `[BibTeX]`.
+- Added indexed talk entries with right-aligned dates:
+
+  ```text
+  [T1] Title. Event, Location. [Links]       Date
+  ```
+
+- Added talk groups for organizing talks by type, such as Invited Talks,
+  Conference Presentations, Seminars, and Posters.
+- Added indexed media entries with right-aligned dates:
+
+  ```text
+  [M1] Title. Outlet. [Links]       Date
+  ```
+
+- Added media groups for organizing interviews, press coverage, podcasts, and
+  articles.
+- Added role-grouped teaching entries with right-aligned terms:
+
+  ```text
+  Role
+  Institution, Course Title. [Links]       Term
+  ```
+
+- Added inline bracket-style links for talks, media, and teaching records.
+- Added custom header contact links through `\VectraAddContactLink`.
+- Added custom header text items through `\VectraAddContactText`.
+- Added configurable header width through `\VectraSetHeaderWidth`.
+- Added adaptive right metadata columns for two-column entries.
+- Added indexed two-column layout support with hanging indentation for talks
+  and media.
+
+### Changed
+
+- Updated publication entries from the v0.1.0 four-field format to a richer
+  seven-field format:
+
+  ```latex
+  \VectraPublicationEntry
+      {Prefix}
+      {Authors}
+      {Title}
+      {Venue}
+      {Year}
+      {Location}
+      {Links}
+  ```
+
+- Standardized scholarly and public-facing record links as inline bracket-style
+  links.
+- Updated talks to use indexed compact academic record formatting with dates in
+  the right metadata column.
+- Updated media entries to use indexed compact record formatting with dates in
+  the right metadata column.
+- Updated teaching entries to use role-grouped compact records with terms in the
+  right metadata column.
+- Reorganized spacing design around semantic entry categories:
+  - Major entries: Education, Research Experience, General Experience, Projects.
+  - Record entries: Publications, Talks, Media, Teaching.
+  - Compact entries: Awards, Service, Certifications.
+  - Skill entries: Skill groups.
+- Updated right metadata layout so dates, terms, and short metadata use natural
+  width instead of a fixed-width column.
+- Updated header contact wrapping so contact items remain intact and separators
+  are omitted at line breaks.
+- Updated academic CV examples to include publications, talks, media, and
+  teaching sections.
+- Updated documentation for publications, talks, media, teaching, header
+  customization, and adaptive metadata columns.
+
+### Fixed
+
+- Fixed undefined control sequence errors caused by layout helpers being used
+  before definition.
+- Fixed inconsistent top alignment between indexed left records and right-side
+  dates in media and talk entries.
+- Fixed contact separator wrapping so lines do not end or begin with `|`.
+- Fixed spacing behavior for group headings that appear immediately after a
+  section title.
+- Fixed link spacing behavior so inline links do not inherit unwanted whitespace
+  from source line breaks.
+
+## [0.1.0] - 2026-06-28
 
 ### Added
 

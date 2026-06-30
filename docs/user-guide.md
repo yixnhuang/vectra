@@ -141,6 +141,61 @@ This will omit the advisor line entirely.
 Similarly, project dates, technologies, certification dates, award descriptions,
 and other non-essential fields may be left empty when they are not applicable.
 
+## Header Customization
+
+VECTRA provides a fixed academic header style, but users may add controlled
+custom contact links when needed.
+
+### Header Width
+
+The header content can be constrained to a narrower width:
+
+```latex
+\VectraSetHeaderWidth{0.86\textwidth}
+```
+
+Recommended values:
+
+```text
+0.90\textwidth  - wider header
+0.86\textwidth  - default recommended width
+0.80\textwidth  - more compact centered header
+```
+
+### Custom Header Links
+
+Use:
+
+```latex
+\VectraAddContactLink{Display Text}{URL}
+```
+
+Example:
+
+```latex
+\VectraAddContactLink{Google Scholar}{https://scholar.google.com/}
+\VectraAddContactLink{Lab}{https://example-lab.org}
+```
+
+Custom links are appended after the built-in contact fields.
+
+### Custom Header Text
+
+Use:
+
+```latex
+\VectraAddContactText{Text}
+```
+
+Example:
+
+```latex
+\VectraAddContactText{Ann Arbor, MI}
+```
+
+Most users should keep custom header items short. Long contact items may cause
+line overflow because contact items are kept together when wrapping.
+
 ## Sections
 
 Use:
@@ -158,7 +213,7 @@ Examples:
 \VectraSection{Awards \& Honors}
 ```
 
-## Education Entries
+## Education
 
 Use:
 
@@ -204,7 +259,7 @@ Recommended style:
 - Use keywords or one compact sentence
 - Avoid long statement-of-purpose paragraphs
 
-## Research Experience Entries
+## Research Experience
 
 Use:
 
@@ -248,7 +303,7 @@ Guidelines:
 - Prefer one to three bullets per entry
 - Use reverse chronological order
 
-## General Experience Entries
+## General Experience
 
 Use:
 
@@ -268,7 +323,7 @@ Use:
 
 This is useful for internships, professional roles, or non-research experience.
 
-## Project Entries
+## Project
 
 Use:
 
@@ -293,32 +348,284 @@ Guidelines:
 - Include measurable results when available
 - Avoid listing too many small class projects
 
-## Publication Entries
+## Publications
+
+VECTRA formats publications as indexed compact academic records.
+
+Recommended format:
+
+```text
+[C1] Authors. Title. Venue, Year. Location. [Links]
+```
 
 Use:
 
 ```latex
 \VectraPublicationEntry
+    {Prefix}
     {Authors}
     {Title}
-    {Venue or Status}
+    {Venue}
     {Year}
+    {Location}
+    {Links}
 ```
 
-Examples of status:
+Example:
+
+```latex
+\VectraPublicationEntry
+    {C1}
+    {\textbf{Jordan Scholar}, Alex Researcher, and Taylor Advisor}
+    {Planning for Multi-Arm Tabletop Rearrangement with Time and Buffer Optimization}
+    {Robotics: Science and Systems (RSS)}
+    {2026}
+    {Los Angeles, CA}
+    {
+        \VectraPublicationLink{Preprint}{https://example.com/preprint}
+        \VectraPublicationLink{Code}{https://github.com/example/project}
+        \VectraPublicationLink{BibTeX}{https://example.com/bibtex}
+    }
+```
+
+Recommended prefixes:
 
 ```text
-Manuscript in preparation
-Conference submission under review
-Preprint
-Accepted
-Published
+P   Preprint
+C   Conference paper
+J   Journal article
+W   Workshop paper
+PT  Patent
 ```
 
-Do not include a Publications section if there are no publications,
-preprints, submissions, or legitimate manuscripts to list.
+Examples:
 
-## Award Entries
+```text
+[P1]
+[C1]
+[J1]
+[W1]
+[PT1]
+```
+
+The title is automatically bolded. Users may bold their own name in the authors
+field:
+
+```latex
+{\textbf{Jordan Scholar}, Alex Researcher, and Taylor Advisor}
+```
+
+### Publication Links
+
+Publication links are written inline in bracket style:
+
+```latex
+\VectraPublicationLink{Preprint}{https://example.com/preprint}
+\VectraPublicationLink{Code}{https://github.com/example/project}
+\VectraPublicationLink{BibTeX}{https://example.com/bibtex}
+```
+
+This renders conceptually as:
+
+```text
+[Preprint] [Code] [BibTeX]
+```
+
+If a publication has no links, leave the links field empty:
+
+```latex
+{}
+```
+
+### Publication Notes
+
+Use publication notes for equal contribution or similar explanations:
+
+```latex
+\VectraPublicationNote{(The superscript \textsuperscript{*} indicates equal contribution.)}
+```
+
+Example author field:
+
+```latex
+{\textbf{Jordan Scholar}\textsuperscript{*}, Alex Researcher\textsuperscript{*}, and Taylor Advisor}
+```
+
+### Publication Groups
+
+Use publication groups to organize entries:
+
+```latex
+\VectraPublicationGroup{Preprints}
+\VectraPublicationGroup{Conference Papers}
+\VectraPublicationGroup{Journal Articles}
+```
+
+## Talks
+
+VECTRA formats talks as indexed two-column academic records.
+
+Recommended format:
+
+```text
+[T1] Title. Event, Location. [Links]       Date
+```
+
+Use:
+
+```latex
+\VectraTalkEntry
+    {Prefix}
+    {Title}
+    {Event}
+    {Location}
+    {Links}
+    {Date}
+```
+
+Example:
+
+```latex
+\VectraTalkEntry
+    {T1}
+    {Planning for Multi-Arm Rearrangement under Resource Constraints}
+    {Example Robotics Seminar, Example University}
+    {Ann Arbor, MI}
+    {
+        \VectraTalkLink{Slides}{https://example.com/slides}
+        \VectraTalkLink{Video}{https://example.com/video}
+    }
+    {Mar. 2026}
+```
+
+Talks may be grouped by type:
+
+```latex
+\VectraTalkGroup{Invited Talks}
+\VectraTalkGroup{Conference Presentations}
+\VectraTalkGroup{Posters}
+```
+
+Talk links are inline bracket-style links:
+
+```latex
+\VectraTalkLink{Slides}{https://example.com/slides}
+\VectraTalkLink{Video}{https://example.com/video}
+```
+
+If there are no links, leave the links field empty:
+
+```latex
+{}
+```
+
+## Media
+
+Media entries are used for interviews, press coverage, podcasts, articles, and
+similar public-facing coverage. Media is separate from academic talks.
+
+Recommended format:
+
+```text
+[M1] Title. Outlet. [Links]       Date
+```
+
+Use:
+
+```latex
+\VectraMediaEntry
+    {Prefix}
+    {Title}
+    {Outlet}
+    {Links}
+    {Date}
+```
+
+Example:
+
+```latex
+\VectraMediaEntry
+    {M1}
+    {Interview on Multi-Robot Planning}
+    {Example Robotics Podcast}
+    {
+        \VectraMediaLink{Interview}{https://example.com/interview}
+    }
+    {May 2026}
+```
+
+Media entries may be grouped:
+
+```latex
+\VectraMediaGroup{Interviews}
+\VectraMediaGroup{Press Coverage}
+\VectraMediaGroup{Podcasts}
+```
+
+If there are no links, leave the links field empty:
+
+```latex
+{}
+```
+
+## Teaching Experience
+
+Teaching entries are grouped by role and use compact two-column records.
+
+Recommended format:
+
+```text
+Role
+Institution, Course Title. [Links]       Term
+```
+
+Use:
+
+```latex
+\VectraTeachingGroup{Role}
+
+\VectraTeachingEntry
+    {Institution}
+    {Course Title}
+    {Links}
+    {Term}
+```
+
+Example:
+
+```latex
+\VectraTeachingGroup{Instructor}
+
+\VectraTeachingEntry
+    {Example University}
+    {Introduction to Robotics}
+    {
+        \VectraTeachingLink{Course Website}{https://example.com/course}
+        \VectraTeachingLink{Syllabus}{https://example.com/syllabus}
+    }
+    {Fall 2026}
+```
+
+Common teaching groups include:
+
+```text
+Instructor
+Co-Instructor
+Teaching Assistant
+Guest Lecturer
+Mentor
+```
+
+If there are no links, leave the links field empty:
+
+```latex
+{}
+```
+
+Teaching entries are not indexed by default because teaching is treated as an
+experience record rather than a publication-like scholarly output.
+
+## Award
 
 Use:
 
@@ -344,7 +651,7 @@ Guidelines:
 - Use clear descriptions when award names are unfamiliar
 - Put the most recent or most important awards first
 
-## Leadership and Service Entries
+## Leadership and Service
 
 Use:
 
@@ -391,7 +698,7 @@ Recommended categories:
 - Tools
 - Languages
 
-## Certification Entries
+## Certification
 
 Use:
 
@@ -429,6 +736,25 @@ Avoid:
 - Custom layout commands
 - Decorative symbols
 - Overly broad claims without evidence
+
+## Right Metadata Columns
+
+VECTRA automatically measures the width of right-side metadata such as dates,
+terms, and short locations.
+
+This allows entries such as:
+
+```text
+Project Title                                      2026
+Talk Title                                        Mar. 2026
+Course Title                                      Fall 2026
+```
+
+to use only the space needed by the right-side metadata while allowing the left
+content to use the remaining width.
+
+Users should keep right-side metadata short. Long descriptions should be placed
+in the main left-side content instead.
 
 ## Date Format
 

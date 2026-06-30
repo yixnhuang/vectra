@@ -11,9 +11,9 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{vectra}[2026/6/29 v0.1.0 VECTRA CV and resume template]
+\ProvidesClass{vectra}[2026/06/30 v0.2.0 VECTRA CV and resume template]
 
-\LoadClass[10pt,letterpaper]{article}
+\LoadClass[11pt,letterpaper]{article}
 
 \RequirePackage{vectra-design}
 \RequirePackage{vectra-fonts}
