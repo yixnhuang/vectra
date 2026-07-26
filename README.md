@@ -1,20 +1,20 @@
 # VECTRA
 
-**VECTRA** stands for:
+An opinionated, source-available LaTeX CV and résumé system for research,
+academia, and professional applications. VECTRA combines a polished fixed design,
+modular content files, extensive documentation, reproducible examples, and
+print-friendly PDF output.
 
-> **Versatile Experience and Career Template for Research and Academia**
-
-VECTRA is a source-available LaTeX CV and resume template designed for academic,
-research, professional, and application use.
-
-It provides a fixed, professionally designed CV style while allowing users to
-edit their own personal information and CV content through simple section files.
-
-VECTRA is intentionally opinionated: it is designed to look clean, academic,
-compact, readable, and print-friendly without requiring users to customize
-typography, spacing, margins, or layout internals.
+[![License](https://img.shields.io/badge/License-Source--Available-blue.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-success.svg)](#project-status)
+[![LaTeX](https://img.shields.io/badge/LaTeX-CV%20Template-informational.svg)](#quick-start)
+[![Build](https://img.shields.io/badge/Build-latexmk-orange.svg)](Makefile)
+[![Docs](https://img.shields.io/badge/Docs-Complete-blueviolet.svg)](docs/)
 
 ## Overview
+
+**VECTRA** stands for **Versatile Experience and Career Template for Research
+and Academia**.
 
 VECTRA is built for users who want a polished academic CV or research-oriented
 resume without spending time adjusting LaTeX formatting.
@@ -440,31 +440,13 @@ See:
 - [`LICENSE`](./LICENSE)
 - [`USAGE_POLICY.md`](./USAGE_POLICY.md)
 
-## Author
+## Project Status
 
-VECTRA is created and maintained by:
-
-```text
-Yixuan Huang
-```
-
-Official repository:
-
-```text
-https://github.com/yixnhuang/vectra
-```
-
-Author website:
-
-```text
-https://yixnhuang.github.io/
-```
+Active. VECTRA is maintained as a structured template system with versioned
+documentation, examples, citation metadata, and a changelog.
 
 ## Contact
 
-For questions, suggestions, permission requests, or licensing inquiries, please
-use the official repository:
-
-```text
-https://github.com/yixnhuang/vectra
-```
+- Website: [yixuanhuang.com](https://yixuanhuang.com)
+- Email: [yixhuang@umich.edu](mailto:yixhuang@umich.edu)
+- Repository: [github.com/yixnhuang/vectra](https://github.com/yixnhuang/vectra)

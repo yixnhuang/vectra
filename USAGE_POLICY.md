@@ -140,5 +140,5 @@ https://github.com/yixnhuang/vectra
 Author website:
 
 ```text
-https://yixnhuang.github.io/
+https://yixuanhuang.com/
 ```
