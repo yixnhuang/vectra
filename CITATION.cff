@@ -7,9 +7,9 @@ authors:
     given-names: Yixuan
 repository-code: "https://github.com/yixnhuang/vectra"
 url: "https://github.com/yixnhuang/vectra"
-abstract: "A source-available LaTeX CV and resume template for academic, research, professional, and application use."
+abstract: "An open-source LaTeX CV and resume template for academic, research, professional, and application use."
 version: "0.1.0"
-license: "LicenseRef-Yixuan-Huang-Non-Commercial-Attribution-Template-License-1.0"
+license: "LPPL-1.3c"
 keywords:
   - CV
   - resume

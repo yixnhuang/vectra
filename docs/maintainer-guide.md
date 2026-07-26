@@ -7,7 +7,7 @@ settings, and section files.
 
 ## Purpose
 
-VECTRA is designed as an opinionated, source-available LaTeX CV template.
+VECTRA is designed as an opinionated, open-source LaTeX CV template.
 
 The goal is not to expose many customization options. Instead, the template
 should provide a fixed, polished, academic style with a small content-facing API.

@@ -3,8 +3,9 @@
 %% Copyright (c) 2026 Yixuan Huang
 %%
 %% This file is part of VECTRA.
-%% Distributed under the Yixuan Huang Non-Commercial Attribution Template
-%% License Version 1.0.
+%% Distributed under the LaTeX Project Public License, version 1.3c or later.
+%% This work has the LPPL maintenance status "maintained".
+%% The Current Maintainer of this work is Yixuan Huang.
 %%
 %% Official repository:
 %% https://github.com/yixnhuang/vectra

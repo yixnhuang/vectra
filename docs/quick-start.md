@@ -214,16 +214,16 @@ latexmkrc
 The files in `src/` define the template design and are part of the VECTRA
 Template Source.
 
-Users should only edit their personal content files unless they are maintaining
-the official VECTRA repository.
+Most users only need to edit their personal content files. Advanced users may
+modify the template under the terms of the LPPL.
 
 ## 10. Sharing VECTRA
 
 You may publish and share your generated CV or resume PDF.
 
-You may not redistribute or republish the VECTRA template source.
-
-To share the template, link to the official repository:
+You may distribute VECTRA or a modified version in accordance with the LPPL.
+The simplest way to share the maintained version is to link to the official
+repository:
 
 ```text
 https://github.com/yixnhuang/vectra

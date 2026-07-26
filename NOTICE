@@ -2,30 +2,24 @@ VECTRA: Versatile Experience and Career Template for Research and Academia
 
 Copyright (c) 2026 Yixuan Huang
 
-VECTRA is a source-available LaTeX CV and resume template designed for
-academic, research, professional, and application use.
+VECTRA is distributed under the LaTeX Project Public License, version 1.3c or
+any later version. The complete license text is provided in LICENSE.
 
-This project is distributed under the:
+This work has the LPPL maintenance status "maintained".
+The Current Maintainer of this work is Yixuan Huang.
 
-    Yixuan Huang Non-Commercial Attribution Template License Version 1.0
-
-The Template Source may not be redistributed, republished, mirrored, sold,
-repackaged, or used to create another template project except as expressly
-permitted by the license.
-
-Generated CVs and resumes created by filling VECTRA with user-provided personal
-content may be used and shared without visible attribution to VECTRA or Yixuan
-Huang.
-
-If you wish to share or recommend VECTRA, please link to or cite the official
-repository:
+The official repository is:
 
     https://github.com/yixnhuang/vectra
 
-Official project name:
+Generated CVs, resumes, and other documents are not derivative works of VECTRA
+merely because they were produced with the template. Their content belongs to
+their respective authors, and they do not need to display attribution to VECTRA
+or Yixuan Huang.
 
-    VECTRA: Versatile Experience and Career Template for Research and Academia
+Modified versions must comply with the LPPL, identify their changes, and avoid
+using the VECTRA name or branding in a way that suggests official status or
+endorsement.
 
-Maintainer:
-
-    Yixuan Huang
+Third-party fonts, icons, images, and other materials, if any, remain subject to
+their own license terms.

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Replaced the custom source-available license with the LaTeX Project Public
+  License, version 1.3c or later.
+- Added LPPL maintenance, generated-document, contribution, and official-version
+  guidance.
+
 All notable changes to VECTRA will be documented in this file.
 
 VECTRA follows a simple versioning scheme during early development. Public

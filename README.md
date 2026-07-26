@@ -1,14 +1,16 @@
 # VECTRA
 
-An opinionated, source-available LaTeX CV and résumé system for research,
+An opinionated, open-source LaTeX CV and résumé system for research,
 academia, and professional applications. VECTRA combines a polished fixed design,
 modular content files, extensive documentation, reproducible examples, and
 print-friendly PDF output.
 
-[![License](https://img.shields.io/badge/License-Source--Available-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-LPPL_1.3c-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)](#project-status)
 [![LaTeX](https://img.shields.io/badge/LaTeX-CV%20Template-informational.svg)](#quick-start)
-[![Build](https://img.shields.io/badge/Build-latexmk-orange.svg)](Makefile)
+[![Compiler](https://img.shields.io/badge/Compiler-pdfLaTeX-orange.svg)](#requirements)
+[![Overleaf](https://img.shields.io/badge/Overleaf-Compatible-47A141.svg)](#overleaf)
+[![Build](https://img.shields.io/badge/Build-latexmk-8A2BE2.svg)](Makefile)
 [![Docs](https://img.shields.io/badge/Docs-Complete-blueviolet.svg)](docs/)
 
 ## Overview
@@ -76,38 +78,19 @@ The academic CV example demonstrates:
 - Adaptive right-side metadata columns
 - Customizable header links and constrained header width
 
-## Important Usage Notice
+## Usage and Generated Documents
 
-VECTRA is not distributed under a conventional open-source license.
+VECTRA is open-source software distributed under the
+[LaTeX Project Public License 1.3c or later](LICENSE).
 
-It is made available under the:
+You may use and modify the template for your own CV or resume. Documents
+generated with VECTRA belong to their authors and do not need to display a
+VECTRA notice, citation, watermark, or license merely because the template was
+used to produce them.
 
-```text
-Yixuan Huang Non-Commercial Attribution Template License Version 1.0
-```
-
-In short:
-
-You may use VECTRA to create your own CV or resume.
-
-You may edit your own personal content.
-
-You may publish and share your generated PDF without visible attribution.
-
-You may not redistribute, republish, mirror, repackage, sell, or create another
-template project based on VECTRA.
-
-If you want to share VECTRA with others, please cite or link to the official
-repository:
-
-```text
-https://github.com/yixnhuang/vectra
-```
-
-For details, see:
-
-- [`LICENSE`](./LICENSE)
-- [`USAGE_POLICY.md`](./USAGE_POLICY.md)
+Modified template versions must comply with the LPPL, identify their changes,
+and avoid implying that they are an official VECTRA release. See the
+[plain-language license guide](USAGE_POLICY.md) for details.
 
 ## Features
 
@@ -140,6 +123,7 @@ vectra/
 ├── LICENSE
 ├── NOTICE
 ├── USAGE_POLICY.md
+├── CONTRIBUTING.md
 ├── CITATION.cff
 ├── CHANGELOG.md
 ├── Makefile
@@ -175,6 +159,27 @@ vectra/
 │
 └── output/
 ```
+
+## Requirements
+
+- pdfLaTeX
+- `latexmk`
+- A current LaTeX distribution such as TeX Live, MacTeX, or MiKTeX
+
+VECTRA uses pdfLaTeX as its default compiler. The included `latexmkrc` and
+`Makefile` provide the maintained build configuration.
+
+## Overleaf
+
+1. Download or package the repository as a `.zip` archive.
+2. In Overleaf, select `New Project` → `Upload Project`.
+3. Upload the archive.
+4. Set the compiler to `pdfLaTeX` in the project settings.
+5. Copy an example into `cv/`, or set the selected example's `main.tex` as the
+   main document.
+
+The repository does not currently publish an official Overleaf Gallery
+template. The GitHub repository remains the maintained source.
 
 ## Quick Start
 
@@ -419,26 +424,33 @@ Yixuan Huang. VECTRA: Versatile Experience and Career Template for Research and
 Academia. GitHub repository: https://github.com/yixnhuang/vectra
 ```
 
-A `CITATION.cff` file is provided for citation metadata.
+A `CITATION.cff` file is provided so GitHub can generate a citation through
+**Cite this repository**. Citation is appreciated when sharing or discussing
+VECTRA, but it is not required inside a generated CV or resume.
+
+## Contributing
+
+Questions, compatibility reports, documentation corrections, and focused
+improvements are welcome. Please open an issue before preparing a substantial
+change so its scope and design can be discussed.
+
+Thank you to everyone who uses VECTRA, shares thoughtful feedback, and
+recognizes the work behind the project. Your attention and practical experience
+help make the template more reliable and useful.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## License
 
-VECTRA is distributed under the:
+VECTRA is distributed under the
+[LaTeX Project Public License, version 1.3c or later](LICENSE).
 
-```text
-Yixuan Huang Non-Commercial Attribution Template License Version 1.0
-```
+This work has the LPPL maintenance status `maintained`. The Current Maintainer
+is Yixuan Huang. Generated documents are not required to use the LPPL or display
+attribution solely because they were produced with VECTRA.
 
-Generated CVs and resumes created using VECTRA may be used and shared without
-visible attribution.
-
-The template source may not be redistributed, republished, mirrored, sold,
-repackaged, or used to create another template project.
-
-See:
-
-- [`LICENSE`](./LICENSE)
-- [`USAGE_POLICY.md`](./USAGE_POLICY.md)
+See [NOTICE](NOTICE) and [USAGE_POLICY.md](USAGE_POLICY.md) for project-specific
+clarifications.
 
 ## Project Status
 
