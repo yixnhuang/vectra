@@ -10,8 +10,6 @@ print-friendly PDF output.
 [![LaTeX](https://img.shields.io/badge/LaTeX-CV%20Template-informational.svg)](#quick-start)
 [![Compiler](https://img.shields.io/badge/Compiler-pdfLaTeX-orange.svg)](#requirements)
 [![Overleaf](https://img.shields.io/badge/Overleaf-Compatible-47A141.svg)](#overleaf)
-[![Build](https://img.shields.io/badge/Build-latexmk-8A2BE2.svg)](Makefile)
-[![Docs](https://img.shields.io/badge/Docs-Complete-blueviolet.svg)](docs/)
 
 ## Overview
 
@@ -428,6 +426,11 @@ A `CITATION.cff` file is provided so GitHub can generate a citation through
 **Cite this repository**. Citation is appreciated when sharing or discussing
 VECTRA, but it is not required inside a generated CV or resume.
 
+## Project Status
+
+Active. VECTRA is maintained as a structured template system with versioned
+documentation, examples, citation metadata, and a changelog.
+
 ## Contributing
 
 Questions, compatibility reports, documentation corrections, and focused
@@ -452,13 +455,10 @@ attribution solely because they were produced with VECTRA.
 See [NOTICE](NOTICE) and [USAGE_POLICY.md](USAGE_POLICY.md) for project-specific
 clarifications.
 
-## Project Status
-
-Active. VECTRA is maintained as a structured template system with versioned
-documentation, examples, citation metadata, and a changelog.
-
 ## Contact
+
+For questions or collaboration, use the contact details below or consult the
+website for the latest information.
 
 - Website: [yixuanhuang.com](https://yixuanhuang.com)
 - Email: [yixhuang@umich.edu](mailto:yixhuang@umich.edu)
-- Repository: [github.com/yixnhuang/vectra](https://github.com/yixnhuang/vectra)
