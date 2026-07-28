@@ -1,6 +1,6 @@
-# Contributing to VECTRA
+# Contributing to Vectra
 
-Thank you for using VECTRA and for considering an improvement to the project.
+Thank you for using Vectra and for considering an improvement to the project.
 Reports from real academic and professional workflows help keep the template
 reliable, readable, and practical.
 
@@ -10,7 +10,8 @@ Open an issue for:
 
 - reproducible build or layout problems;
 - accessibility or print-quality concerns;
-- documentation corrections;
+- corrections to the
+  [website documentation](https://yixuanhuang.com/projects/vectra/);
 - compatibility reports; or
 - focused feature proposals.
 
@@ -22,7 +23,9 @@ Remove personal information from examples and logs.
 
 For a substantial change, start with an issue so the scope and design can be
 discussed. Keep pull requests focused, document user-visible behavior, and
-update examples or documentation when appropriate.
+update examples when appropriate. Documentation changes should identify the
+corresponding page in the
+[website documentation](https://yixuanhuang.com/projects/vectra/).
 
 By submitting a contribution, you agree that it may be distributed under the
 repository's LaTeX Project Public License terms.

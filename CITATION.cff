@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use or recommend VECTRA, please cite the official repository."
-title: "VECTRA: Versatile Experience and Career Template for Research and Academia"
+message: "If you use or recommend Vectra, please cite the official repository."
+title: "Vectra: Versatile Experience and Career Template for Research and Academia"
 type: software
 authors:
   - family-names: Huang
@@ -20,7 +20,7 @@ keywords:
   - applications
 preferred-citation:
   type: software
-  title: "VECTRA: Versatile Experience and Career Template for Research and Academia"
+  title: "Vectra: Versatile Experience and Career Template for Research and Academia"
   authors:
     - family-names: Huang
       given-names: Yixuan

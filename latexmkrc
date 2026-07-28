@@ -1,9 +1,9 @@
-# latexmkrc for VECTRA
+# latexmkrc for Vectra
 #
 # This configuration is intentionally minimal. The Makefile controls the main
 # build targets and output names.
 #
-# VECTRA currently targets pdfLaTeX as the default engine for stable,
+# Vectra currently targets pdfLaTeX as the default engine for stable,
 # portable builds.
 
 $pdf_mode = 1;

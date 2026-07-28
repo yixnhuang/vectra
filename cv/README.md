@@ -2,7 +2,7 @@
 
 This directory is reserved for local personal CV content.
 
-Personal CV files are not tracked in the public VECTRA repository.
+Personal CV files are not tracked in the public Vectra repository.
 
 To create your own CV, copy one of the example directories:
 

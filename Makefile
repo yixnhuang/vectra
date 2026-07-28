@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-# VECTRA Makefile
+# Vectra Makefile
 # ---------------------------------------------------------------------------
 #
 # Common commands:
@@ -94,7 +94,7 @@ clean-output:
 distclean: clean clean-output
 
 help:
-	@echo "VECTRA build targets:"
+	@echo "Vectra build targets:"
 	@echo ""
 	@echo "  make cv             Build the personal CV"
 	@echo "  make minimal        Build the minimal example"

@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+All notable changes to Vectra are documented in this file.
+
+Vectra follows a simple versioning scheme during early development. Public
+template interface changes, layout changes, documentation updates, and
+maintainer-facing design changes should be recorded here.
+
+## [Unreleased]
 
 ### Changed
 
@@ -8,14 +14,10 @@
   License, version 1.3c or later.
 - Added LPPL maintenance, generated-document, contribution, and official-version
   guidance.
-
-All notable changes to VECTRA will be documented in this file.
-
-VECTRA follows a simple versioning scheme during early development. Public
-template interface changes, layout changes, documentation updates, and
-maintainer-facing design changes should be recorded here.
-
-## [Unreleased]
+- Standardized the project name as `Vectra`.
+- Moved the maintained project documentation and example previews to
+  `https://yixuanhuang.com/projects/vectra/`.
+- Removed the repository-local `docs/` directory.
 
 ## [0.2.0] - 2026-06-30
 
@@ -118,12 +120,12 @@ maintainer-facing design changes should be recorded here.
 
 ### Added
 
-- Initial VECTRA repository structure.
+- Initial Vectra repository structure.
 - Source-available custom license.
 - Plain-language usage policy.
 - Citation metadata through `CITATION.cff`.
 - Modular LaTeX template architecture under `src/`.
-- Main VECTRA document class: `src/vectra.cls`.
+- Main Vectra document class: `src/vectra.cls`.
 - Core style modules:
   - `vectra-design.sty`
   - `vectra-core.sty`
@@ -181,7 +183,7 @@ maintainer-facing design changes should be recorded here.
 
 ### Design and Layout
 
-- Established the default VECTRA Academic Compact style.
+- Established the default Vectra Academic Compact style.
 - Adopted a single-column academic CV layout with right-aligned metadata.
 - Added fixed-width right metadata column for dates and locations.
 - Added subtle section rules for improved scanability.
@@ -226,7 +228,7 @@ maintainer-facing design changes should be recorded here.
 
 ### Examples
 
-- Added minimal example demonstrating the smallest recommended VECTRA document
+- Added minimal example demonstrating the smallest recommended Vectra document
   structure.
 - Added academic CV example demonstrating a research-oriented academic CV
   structure.
@@ -265,16 +267,16 @@ maintainer-facing design changes should be recorded here.
 - Added Overleaf-compatible input path handling in entry-point `main.tex` files.
 - Configured pdfLaTeX as the default build engine.
 - Added machine-readable PDF support through Unicode mapping for pdfLaTeX.
-- Added PDF metadata support through VECTRA profile commands.
+- Added PDF metadata support through Vectra profile commands.
 
 ### License
 
 - Added `Yixuan Huang Non-Commercial Attribution Template License Version 1.0`.
-- Clarified that VECTRA is source-available, not distributed under a
+- Clarified that Vectra is source-available, not distributed under a
   conventional open-source license.
 - Clarified that generated CVs and resumes do not require visible attribution.
 - Clarified that users may edit personal CV content and publish generated PDFs.
 - Clarified that template source redistribution, republication, repackaging,
   resale, and derivative template publication are not permitted.
-- Clarified that sharing VECTRA should be done by citing or linking to the
+- Clarified that sharing Vectra should be done by citing or linking to the
   official repository.

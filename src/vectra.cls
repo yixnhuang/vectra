@@ -1,8 +1,8 @@
 %%
-%% VECTRA: Versatile Experience and Career Template for Research and Academia
+%% Vectra: Versatile Experience and Career Template for Research and Academia
 %% Copyright (c) 2026 Yixuan Huang
 %%
-%% This file is part of VECTRA.
+%% This file is part of Vectra.
 %% Distributed under the LaTeX Project Public License, version 1.3c or later.
 %% This work has the LPPL maintenance status "maintained".
 %% The Current Maintainer of this work is Yixuan Huang.
@@ -12,7 +12,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{vectra}[2026/06/30 v0.2.0 VECTRA CV and resume template]
+\ProvidesClass{vectra}[2026/06/30 v0.2.0 Vectra CV and resume template]
 
 \LoadClass[11pt,letterpaper]{article}
 

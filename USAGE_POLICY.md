@@ -1,12 +1,15 @@
-# VECTRA License Guide
+# Vectra License Guide
 
 This guide summarizes the repository's licensing in plain language. The
 [LaTeX Project Public License](LICENSE) controls if this guide and the license
 ever differ.
 
+The maintained online version of this guide is available in the
+[Vectra documentation](https://yixuanhuang.com/projects/vectra/licensing/).
+
 ## Template Source
 
-VECTRA is distributed under the LaTeX Project Public License, version 1.3c or
+Vectra is distributed under the LaTeX Project Public License, version 1.3c or
 any later version. You may use, study, modify, and distribute the template in
 accordance with the LPPL.
 
@@ -16,13 +19,13 @@ is Yixuan Huang, and the official version is published at
 
 ## Generated Documents
 
-CVs, resumes, and other documents generated with VECTRA belong to their
-respective authors. Using VECTRA to produce a document does not, by itself,
+CVs, resumes, and other documents generated with Vectra belong to their
+respective authors. Using Vectra to produce a document does not, by itself,
 require that document to:
 
 - use the LPPL;
-- display a VECTRA notice or watermark;
-- cite VECTRA or Yixuan Huang; or
+- display a Vectra notice or watermark;
+- cite Vectra or Yixuan Huang; or
 - publish its source.
 
 Attribution is appreciated when discussing or recommending the template, but it
@@ -32,7 +35,7 @@ is not required inside a generated document.
 
 Modified and redistributed template versions must follow the LPPL. In
 particular, they must clearly identify their changes and avoid presenting
-themselves as the official VECTRA release. The VECTRA name and project branding
+themselves as the official Vectra release. The Vectra name and project branding
 identify the version maintained in the official repository.
 
 ## Contributions
@@ -44,7 +47,7 @@ opening a pull request.
 ## Third-Party Materials
 
 Third-party fonts, icons, images, packages, and other materials are governed by
-their respective licenses. The VECTRA license applies only to material for which
+their respective licenses. The Vectra license applies only to material for which
 the project has the right to grant that license.
 
 ## Questions

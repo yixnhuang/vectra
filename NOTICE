@@ -1,8 +1,8 @@
-VECTRA: Versatile Experience and Career Template for Research and Academia
+Vectra: Versatile Experience and Career Template for Research and Academia
 
 Copyright (c) 2026 Yixuan Huang
 
-VECTRA is distributed under the LaTeX Project Public License, version 1.3c or
+Vectra is distributed under the LaTeX Project Public License, version 1.3c or
 any later version. The complete license text is provided in LICENSE.
 
 This work has the LPPL maintenance status "maintained".
@@ -12,13 +12,13 @@ The official repository is:
 
     https://github.com/yixnhuang/vectra
 
-Generated CVs, resumes, and other documents are not derivative works of VECTRA
+Generated CVs, resumes, and other documents are not derivative works of Vectra
 merely because they were produced with the template. Their content belongs to
-their respective authors, and they do not need to display attribution to VECTRA
+their respective authors, and they do not need to display attribution to Vectra
 or Yixuan Huang.
 
 Modified versions must comply with the LPPL, identify their changes, and avoid
-using the VECTRA name or branding in a way that suggests official status or
+using the Vectra name or branding in a way that suggests official status or
 endorsement.
 
 Third-party fonts, icons, images, and other materials, if any, remain subject to

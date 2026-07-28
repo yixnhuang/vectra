@@ -1,7 +1,7 @@
-# VECTRA
+# Vectra
 
 An opinionated, open-source LaTeX CV and résumé system for research,
-academia, and professional applications. VECTRA combines a polished fixed design,
+academia, and professional applications. Vectra combines a polished fixed design,
 modular content files, extensive documentation, reproducible examples, and
 print-friendly PDF output.
 
@@ -13,10 +13,10 @@ print-friendly PDF output.
 
 ## Overview
 
-**VECTRA** stands for **Versatile Experience and Career Template for Research
+**Vectra** stands for **Versatile Experience and Career Template for Research
 and Academia**.
 
-VECTRA is built for users who want a polished academic CV or research-oriented
+Vectra is built for users who want a polished academic CV or research-oriented
 resume without spending time adjusting LaTeX formatting.
 
 It is suitable for:
@@ -44,15 +44,15 @@ The template is designed around a modern academic CV layout:
 ## Preview
 
 The preview below shows selected pages from the academic CV example generated
-with VECTRA.
+with Vectra.
 
 <p align="center">
-  <img src="./docs/assets/vectra-academic-cv-example-page-1.png" alt="VECTRA academic CV example page 1" width="45%">
-  <img src="./docs/assets/vectra-academic-cv-example-page-2.png" alt="VECTRA academic CV example page 2" width="45%">
+  <img src="https://yixuanhuang.com/assets/projects/vectra/vectra-academic-cv-example-page-1.png" alt="Vectra academic CV example page 1" width="45%">
+  <img src="https://yixuanhuang.com/assets/projects/vectra/vectra-academic-cv-example-page-2.png" alt="Vectra academic CV example page 2" width="45%">
 </p>
 
 <p align="center">
-  <img src="./docs/assets/vectra-academic-cv-example-page-3.png" alt="VECTRA academic CV example page 3" width="45%">
+  <img src="https://yixuanhuang.com/assets/projects/vectra/vectra-academic-cv-example-page-3.png" alt="Vectra academic CV example page 3" width="45%">
 </p>
 
 ## Examples
@@ -64,8 +64,8 @@ Example source files are available in:
 
 Compiled example PDFs are available here:
 
-- [Minimal example PDF](./docs/assets/vectra-minimal-example.pdf)
-- [Academic CV example PDF](./docs/assets/vectra-academic-cv-example.pdf)
+- [Minimal example PDF](https://yixuanhuang.com/assets/projects/vectra/vectra-minimal-example.pdf)
+- [Academic CV example PDF](https://yixuanhuang.com/assets/projects/vectra/vectra-academic-cv-example.pdf)
 
 The academic CV example demonstrates:
 
@@ -78,16 +78,16 @@ The academic CV example demonstrates:
 
 ## Usage and Generated Documents
 
-VECTRA is open-source software distributed under the
+Vectra is open-source software distributed under the
 [LaTeX Project Public License 1.3c or later](LICENSE).
 
 You may use and modify the template for your own CV or resume. Documents
-generated with VECTRA belong to their authors and do not need to display a
-VECTRA notice, citation, watermark, or license merely because the template was
+generated with Vectra belong to their authors and do not need to display a
+Vectra notice, citation, watermark, or license merely because the template was
 used to produce them.
 
 Modified template versions must comply with the LPPL, identify their changes,
-and avoid implying that they are an official VECTRA release. See the
+and avoid implying that they are an official Vectra release. See the
 [plain-language license guide](USAGE_POLICY.md) for details.
 
 ## Features
@@ -147,14 +147,6 @@ vectra/
 │   ├── minimal/
 │   └── academic-cv/
 │
-├── docs/
-│   ├── quick-start.md
-│   ├── user-guide.md
-│   ├── maintainer-guide.md
-│   ├── style-rationale.md
-│   ├── license-guide.md
-│   └── assets/
-│
 └── output/
 ```
 
@@ -164,7 +156,7 @@ vectra/
 - `latexmk`
 - A current LaTeX distribution such as TeX Live, MacTeX, or MiKTeX
 
-VECTRA uses pdfLaTeX as its default compiler. The included `latexmkrc` and
+Vectra uses pdfLaTeX as its default compiler. The included `latexmkrc` and
 `Makefile` provide the maintained build configuration.
 
 ## Overleaf
@@ -181,7 +173,7 @@ template. The GitHub repository remains the maintained source.
 
 ## Quick Start
 
-The public VECTRA repository does not track personal CV source files in `cv/`.
+The public Vectra repository does not track personal CV source files in `cv/`.
 
 To create your own local CV, copy one of the examples into `cv/`:
 
@@ -263,7 +255,7 @@ cv/settings.tex
 This file is for simple content-level settings, such as whether the footer date
 uses the current compile date or a fixed update date.
 
-VECTRA is not intended to be customized by changing fonts, spacing, margins, or
+Vectra is not intended to be customized by changing fonts, spacing, margins, or
 layout internals.
 
 ### 4. Compile
@@ -306,13 +298,13 @@ Makefile
 latexmkrc
 ```
 
-The files in `src/` define the VECTRA template design and layout. They are part
+The files in `src/` define the Vectra template design and layout. They are part
 of the Template Source and are not intended for user customization or
 redistribution.
 
 ## Academic Record Formats
 
-VECTRA supports indexed compact records for scholarly and public-facing content.
+Vectra supports indexed compact records for scholarly and public-facing content.
 
 ### Publications
 
@@ -344,7 +336,7 @@ records.
 
 ## Design Philosophy
 
-VECTRA follows a compact academic design philosophy.
+Vectra follows a compact academic design philosophy.
 
 The default style is intended to be:
 
@@ -356,7 +348,7 @@ The default style is intended to be:
 - Print-friendly
 - Suitable for research-oriented applications
 
-VECTRA avoids:
+Vectra avoids:
 
 - Decorative sidebars
 - Excessive icons
@@ -370,7 +362,7 @@ consistency.
 
 ## Footer Design
 
-VECTRA includes a structured footer system.
+Vectra includes a structured footer system.
 
 The footer may include:
 
@@ -389,46 +381,37 @@ balanced.
 
 ## Documentation
 
-Additional documentation is available in:
+Vectra documentation is maintained on the project website:
 
-```text
-docs/
-```
+- [Documentation overview](https://yixuanhuang.com/projects/vectra/)
+- [Quick Start](https://yixuanhuang.com/projects/vectra/quick-start/)
+- [User Guide](https://yixuanhuang.com/projects/vectra/user-guide/)
+- [Design Rationale](https://yixuanhuang.com/projects/vectra/design/)
+- [Maintainer Guide](https://yixuanhuang.com/projects/vectra/maintainer-guide/)
+- [Licensing](https://yixuanhuang.com/projects/vectra/licensing/)
+- [Changelog](https://yixuanhuang.com/projects/vectra/changelog/)
 
-Recommended reading:
-
-- [`docs/quick-start.md`](./docs/quick-start.md)
-- [`docs/user-guide.md`](./docs/user-guide.md)
-- [`docs/style-rationale.md`](./docs/style-rationale.md)
-- [`docs/license-guide.md`](./docs/license-guide.md)
-
-Maintainer-facing design notes are available in:
-
-```text
-docs/maintainer-guide.md
-```
-
-This file explains internal design parameters such as spacing, margins, footer
-layout, adaptive metadata columns, and typography. These settings are not part
-of the public user API.
+The website is the canonical location for project documentation. The repository
+contains the template source, examples, build configuration, and formal license
+files.
 
 ## Citation
 
-If you use VECTRA and want to recommend or share the template, please cite or
+If you use Vectra and want to recommend or share the template, please cite or
 link to the official repository:
 
 ```text
-Yixuan Huang. VECTRA: Versatile Experience and Career Template for Research and
+Yixuan Huang. Vectra: Versatile Experience and Career Template for Research and
 Academia. GitHub repository: https://github.com/yixnhuang/vectra
 ```
 
 A `CITATION.cff` file is provided so GitHub can generate a citation through
 **Cite this repository**. Citation is appreciated when sharing or discussing
-VECTRA, but it is not required inside a generated CV or resume.
+Vectra, but it is not required inside a generated CV or resume.
 
 ## Project Status
 
-Active. VECTRA is maintained as a structured template system with versioned
+Active. Vectra is maintained as a structured template system with versioned
 documentation, examples, citation metadata, and a changelog.
 
 ## Contributing
@@ -437,7 +420,7 @@ Questions, compatibility reports, documentation corrections, and focused
 improvements are welcome. Please open an issue before preparing a substantial
 change so its scope and design can be discussed.
 
-Thank you to everyone who uses VECTRA, shares thoughtful feedback, and
+Thank you to everyone who uses Vectra, shares thoughtful feedback, and
 recognizes the work behind the project. Your attention and practical experience
 help make the template more reliable and useful.
 
@@ -445,12 +428,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## License
 
-VECTRA is distributed under the
+Vectra is distributed under the
 [LaTeX Project Public License, version 1.3c or later](LICENSE).
 
 This work has the LPPL maintenance status `maintained`. The Current Maintainer
 is Yixuan Huang. Generated documents are not required to use the LPPL or display
-attribution solely because they were produced with VECTRA.
+attribution solely because they were produced with Vectra.
 
 See [NOTICE](NOTICE) and [USAGE_POLICY.md](USAGE_POLICY.md) for project-specific
 clarifications.
