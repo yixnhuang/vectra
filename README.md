@@ -55,6 +55,11 @@ with Vectra.
   <img src="https://yixuanhuang.com/assets/projects/vectra/vectra-academic-cv-example-page-3.png" alt="Vectra academic CV example page 3" width="45%">
 </p>
 
+Both examples describe **Jordan Avery**, who does not exist. Every publication,
+talk, award and appointment in them is invented, and exists only to show the
+layout at a realistic density. Replace all of it before you compile anything you
+intend to send.
+
 ## Examples
 
 Example source files are available in:
