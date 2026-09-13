@@ -6,7 +6,33 @@ Vectra follows a simple versioning scheme during early development. Public
 template interface changes, layout changes, documentation updates, and
 maintainer-facing design changes should be recorded here.
 
-## [Unreleased]
+## [0.3.0] - 2026-09-12
+
+### Added
+
+- Added a `compact` class option: a one-page professional resume style at 10pt
+  with 0.85/1.05 cm margins, a 0.96 line spread, an 18pt name, `\normalsize`
+  section titles, and roughly a third of the academic style's space between
+  entries.
+  `\documentclass[compact]{vectra}` selects it; `academic` names the default
+  explicitly. Any other option is still passed through to `article`.
+- Added `src/vectra-compact.sty`, which holds the compact style's design
+  parameters. It redefines what `vectra-design.sty` sets and touches no macro in
+  the layout, header, section or footer layers, so the two styles differ in
+  measurement and never in behaviour. The class loads it between `vectra-design`
+  and `vectra-core`, because `vectra-core` is where the margin lengths reach
+  `geometry`.
+- Documented both styles and their parameter differences in a new `Document
+  Styles` section of the README.
+- Added `\VectraSetPDFLang`, which writes the document's natural language into
+  the PDF catalogue as `/Lang`. A screen reader chooses its pronunciation rules
+  from that entry and otherwise falls back to the reading machine's locale, so
+  an English document opened on a system configured for another language is
+  read with the wrong phonology. WCAG 2.2 requires it at level A (3.1.1) and
+  PDF/UA requires it of the document. Defaults to `en`; set `zh-CN` for a
+  Chinese document. hyperref's own `pdflang` key does not reach the catalogue
+  when set this late under pdfTeX, which was verified against the generated
+  file, so the entry is written directly.
 
 ### Changed
 

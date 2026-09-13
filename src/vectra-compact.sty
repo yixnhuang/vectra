@@ -1,0 +1,153 @@
+%%
+%% Vectra compact style overrides
+%% Copyright (c) 2026 Yixuan Huang
+%%
+%% This file is part of Vectra.
+%% Distributed under the LaTeX Project Public License, version 1.3c or later.
+%% This work has the LPPL maintenance status "maintained".
+%% The Current Maintainer of this work is Yixuan Huang.
+%%
+%% Official repository:
+%% https://github.com/yixnhuang/vectra
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vectra-compact}[2026/09/12 v0.3.0 Vectra compact style overrides]
+
+% ---------------------------------------------------------------------------
+% What this file is, and what it is not
+% ---------------------------------------------------------------------------
+%
+% Loaded only by \documentclass[compact]{vectra}. It redefines the design
+% parameters set in vectra-design.sty and nothing else: no macro in the layout,
+% header, section or footer layers is touched, so the two styles cannot drift
+% apart in behaviour, only in measurement.
+%
+% It must load AFTER vectra-design (whose values it overrides) and BEFORE
+% vectra-core (which applies the margins to geometry). The class enforces that
+% order; this package does not check it.
+%
+% The design brief is one page for a professional application, read by a hiring
+% coordinator in well under a minute rather than by a committee for a quarter of
+% an hour. Every value below moves in one direction -- more content per page.
+%
+% This style is deliberately at the tight end of what stays readable. The test
+% applied to each value was whether the page still reads comfortably on paper at
+% arm's length, not how small the number could go; the values that were rejected
+% are recorded beside the ones that were kept.
+
+% ---------------------------------------------------------------------------
+% Page geometry
+% ---------------------------------------------------------------------------
+%
+% The academic style uses 1.60/1.75cm, which is moderate by design. Here the
+% margins go to roughly a third of an inch vertically and two fifths
+% horizontally.
+%
+% 1.05cm of side margin at 10pt on letter paper gives a measure of about 105
+% characters. That is past the classic 66-character optimum and is a real cost
+% in reading speed -- it is accepted because the alternative on a one-page
+% resume is dropping a line of content, and a line the reader never sees costs
+% more than a line they read slightly slower.
+%
+% 0.85cm top and bottom is close to the limit: most consumer printers reserve
+% about 0.6cm of unprintable edge, so this leaves roughly a quarter centimetre
+% of tolerance. Do not go below 0.80cm without testing on the actual printer.
+
+\setlength{\VectraMarginTop}{0.85cm}
+\setlength{\VectraMarginBottom}{0.85cm}
+\setlength{\VectraMarginLeft}{1.05cm}
+\setlength{\VectraMarginRight}{1.05cm}
+\setlength{\VectraFooterSkip}{0.40cm}
+
+% ---------------------------------------------------------------------------
+% Line spacing
+% ---------------------------------------------------------------------------
+%
+% Charter's default leading is generous, which is why it sets well at 11pt over
+% three pages. At 0.96 the 10pt body goes from a 12pt baseline to about 11.5pt:
+% still more leading than the type needs, and it recovers roughly one line in
+% every twenty-five.
+%
+% 0.92 was tried and rejected -- descenders and the following line's ascenders
+% begin to interfere in the bullet lists, which is exactly where this document
+% is densest.
+
+\renewcommand{\VectraBodyLineStretch}{0.96}
+\renewcommand{\VectraEntryLineStretch}{0.96}
+
+% ---------------------------------------------------------------------------
+% Header
+% ---------------------------------------------------------------------------
+%
+% 28pt is a display size: it works when the name owns the top of a three-page
+% document. On one page it spends four body lines saying something the reader
+% already knows. 18pt is still unmistakably the title of the page.
+%
+% The header width goes to 0.96 of the text width so the contact line has room
+% to stay on one line rather than wrapping to two, and the separator kern
+% tightens with it.
+
+\renewcommand{\VectraNameFont}{\fontsize{18pt}{20pt}\selectfont}
+\renewcommand{\VectraContactFont}{\small}
+\renewcommand{\VectraHeaderWidth}{0.96\textwidth}
+
+\setlength{\VectraHeaderNameContactSpace}{0.06cm}
+\setlength{\VectraHeaderBottomSpace}{0.06cm}
+
+\setlength{\VectraContactSeparatorSpace}{4pt}
+
+% ---------------------------------------------------------------------------
+% Sections
+% ---------------------------------------------------------------------------
+%
+% \large at 10pt is 12pt, which on a dense page reads as a heading competing
+% with the name rather than organising the body. \normalsize bold plus the rule
+% Vectra already draws under every section title is enough separation: the rule
+% does the work, so the size does not have to.
+%
+% The space above a section stays larger than the space below it. That
+% asymmetry is what tells the eye a new block has started, and it is the one
+% piece of air in this file that was not cut to the minimum.
+
+\renewcommand{\VectraSectionFont}{\normalsize\bfseries}
+
+\setlength{\VectraSectionTopSpace}{0.14cm}
+\setlength{\VectraSectionBottomSpace}{0.05cm}
+
+% ---------------------------------------------------------------------------
+% Entry spacing
+% ---------------------------------------------------------------------------
+%
+% The major-entry gap is the most expensive value in the design. An academic CV
+% has perhaps fifteen of them, and 0.40cm each is well spent when the reader is
+% moving through pages of record. Here 0.14cm is enough, because every entry
+% also opens with a bold line and closes with an indented bullet list -- the
+% typography already announces the boundary, so the whitespace does not have to.
+
+\setlength{\VectraMajorEntrySeparation}{0.14cm}
+\setlength{\VectraRecordEntrySeparation}{0.05cm}
+\setlength{\VectraCompactEntrySeparation}{0cm}
+\setlength{\VectraSkillEntrySeparation}{0.01cm}
+
+% ---------------------------------------------------------------------------
+% Bullets
+% ---------------------------------------------------------------------------
+%
+% The bullet indent shrinks with the body size rather than staying at the
+% academic 12pt, which at 10pt would read as a deeper indent than intended.
+
+\setlength{\VectraBulletLeftMargin}{9pt}
+\setlength{\VectraEntryBulletSeparation}{1pt}
+
+% ---------------------------------------------------------------------------
+% Footer
+% ---------------------------------------------------------------------------
+%
+% Kept consistent in case the footer is turned on for a two-page professional
+% resume, which is a legitimate use of this style even though the default use
+% is one page.
+
+\renewcommand{\VectraFooterFont}{\footnotesize}
+
+\endinput

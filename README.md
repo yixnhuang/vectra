@@ -137,6 +137,7 @@ vectra/
 │   ├── vectra.cls
 │   ├── vectra-core.sty
 │   ├── vectra-design.sty
+│   ├── vectra-compact.sty
 │   ├── vectra-layout.sty
 │   ├── vectra-sections.sty
 │   ├── vectra-header.sty
@@ -153,6 +154,74 @@ vectra/
 │   └── academic-cv/
 │
 └── output/
+```
+
+## Document Styles
+
+Vectra ships two styles, chosen with a class option. They share every macro;
+only the design parameters differ, so a document can be moved from one to the
+other by editing a single line.
+
+```latex
+\documentclass{vectra}            % academic, the default
+\documentclass[compact]{vectra}   % one-page professional resume
+```
+
+| | `academic` (default) | `compact` |
+|---|---|---|
+| Base size | 11pt | 10pt |
+| Line spread | 1.00 | 0.96 |
+| Margins, top / bottom | 1.60 / 1.75 cm | 0.85 / 0.85 cm |
+| Margins, left / right | 1.75 cm | 1.05 cm |
+| Name | 28pt | 18pt |
+| Section titles | `\large\bfseries` | `\normalsize\bfseries` |
+| Space above / below a section | 0.32 / 0.14 cm | 0.14 / 0.05 cm |
+| Major entry gap | 0.40 cm | 0.14 cm |
+| Header width | 0.80 of text width | 0.96 |
+| Intended length | as many pages as the record needs | one |
+
+`academic` is for the document a committee reads for a quarter of an hour:
+publications, talks, teaching, the full record, generous spacing that survives
+page after page. `compact` is for the document a hiring coordinator reads in
+under a minute, where the page is the constraint and every value moves in the
+direction of more content per page.
+
+`compact` is deliberately at the tight end of readable. Two limits are worth
+knowing before pushing it further. The vertical margins leave roughly a quarter
+of a centimetre over the unprintable edge most consumer printers reserve, so
+going below 0.80 cm needs testing on the actual printer. And a line spread
+below about 0.95 makes descenders and the next line's ascenders interfere in
+bullet lists, which is where this style is densest.
+
+**The option changes nothing for a document that does not pass it.** `compact`
+is purely additive: the academic style's measurements are exactly what they
+were before it existed. The PDF is not byte-identical to one built with v0.2.0,
+because v0.3.0 also writes `/Lang` into every document's catalogue.
+
+**How it works.** `vectra-compact.sty` redefines the lengths and macros that
+`vectra-design.sty` sets, and touches nothing in the layout, header, section or
+footer layers. The class loads it between design, whose values it overrides, and
+core, which hands the margins to `geometry`. The two styles can therefore differ
+in measurement but never in behaviour: a bug fixed in a section macro is fixed
+in both, and there is no second code path to keep in step.
+
+**Declare the document's language.** `\VectraSetPDFLang` writes `/Lang` into the
+PDF catalogue, which is what a screen reader reads to choose its pronunciation
+rules. Without it the reader uses its own locale, and an English CV opened on a
+system set to another language is read with the wrong phonology rather than
+merely the wrong accent. It defaults to `en`:
+
+```latex
+\VectraSetPDFLang{en}      % default
+\VectraSetPDFLang{zh-CN}   % a Chinese document
+```
+
+**Turn the footer off in `compact`.** A document that is one page by
+construction has no page number worth printing:
+
+```latex
+\VectraSetDateMode{none}
+\VectraSetFooterMode{none}
 ```
 
 ## Requirements
@@ -305,7 +374,10 @@ latexmkrc
 
 The files in `src/` define the Vectra template design and layout. They are part
 of the Template Source and are not intended for user customization or
-redistribution.
+redistribution. This includes `src/vectra-compact.sty`: the way to select the
+compact style is the class option, not an edit to that file. A document that
+needs different measurements than either style provides is asking for a third
+style, which belongs in `src/` beside the other two.
 
 ## Academic Record Formats
 
