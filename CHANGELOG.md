@@ -6,6 +6,16 @@ Vectra follows a simple versioning scheme during early development. Public
 template interface changes, layout changes, documentation updates, and
 maintainer-facing design changes should be recorded here.
 
+## [1.2.0] - 2026-09-14
+
+### Changed
+
+- The telephone now leads the contact line, before the email. A reader who is
+  going to make contact at all reaches for it first, and on a resume that is
+  what the line is for; the profiles are what someone reads when they are not
+  yet deciding. A document that sets no phone is unchanged, because an empty
+  field prints nothing and the email keeps the first position.
+
 ## [1.1.0] - 2026-09-13
 
 ### Added

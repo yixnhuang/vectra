@@ -12,7 +12,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{vectra}[2026/09/13 v1.1.0 Vectra CV and resume template]
+\ProvidesClass{vectra}[2026/09/14 v1.2.0 Vectra CV and resume template]
 
 % ---------------------------------------------------------------------------
 % Class options

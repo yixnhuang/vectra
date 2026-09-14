@@ -12,7 +12,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-header}[2026/09/13 v1.1.0 Vectra header settings]
+\ProvidesPackage{vectra-header}[2026/09/14 v1.2.0 Vectra header settings]
 
 % ---------------------------------------------------------------------------
 % Profile fields
@@ -238,12 +238,17 @@
             \vspace{\VectraHeaderNameContactSpace}
             {\VectraContactFont
                 \Vectra@contactprintedfalse
+                % Phone leads. A resume header reads in decreasing immediacy,
+                % and the phone is the fastest channel; it is also where most
+                % US resume conventions put it. A document with no phone set
+                % is unaffected -- the macro emits nothing -- so the academic
+                % CV, which deliberately carries no phone, is unchanged.
+                \Vectra@ContactPhone
                 \Vectra@ContactEmail
                 \Vectra@ContactWebsite
                 \Vectra@ContactGitHub
                 \Vectra@ContactLinkedIn
                 \Vectra@ContactORCID
-                \Vectra@ContactPhone
                 \Vectra@ContactLocation
                 \Vectra@ContactCustomItems
                 \par
