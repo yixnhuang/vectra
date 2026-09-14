@@ -12,7 +12,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-header}[2026/09/12 v0.3.0 Vectra header settings]
+\ProvidesPackage{vectra-header}[2026/09/13 v1.1.0 Vectra header settings]
 
 % ---------------------------------------------------------------------------
 % Profile fields
@@ -165,9 +165,39 @@
     }%
 }
 
+% A phone number is written for a person -- "(734) 649-2336" -- and a tel: URI
+% is not. A space ends the URI, so the link generated from the printed form
+% reached only "tel:(734", which is not a number anyone can call. The dialable
+% form is derived here rather than asked of the user: spaces, brackets, dots and
+% the separating hyphens are removed, a leading + is kept, and what remains is
+% the digit string RFC 3966 wants. The printed text is untouched.
+
+\ExplSyntaxOn
+\str_new:N \l_vectra_phone_str
+\cs_new:Npn \Vectra@phoneuri {}
+\NewDocumentCommand{\Vectra@SetPhoneURI}{m}{%
+    % x-expanded: the argument arrives as \Vectra@phone, and an unexpanded
+    % \str_set:Nn would store that control sequence rather than the number.
+    \str_set:Nx \l_vectra_phone_str {#1}
+    \str_remove_all:Nn \l_vectra_phone_str {~}
+    \str_remove_all:Nn \l_vectra_phone_str {(}
+    \str_remove_all:Nn \l_vectra_phone_str {)}
+    \str_remove_all:Nn \l_vectra_phone_str {[}
+    \str_remove_all:Nn \l_vectra_phone_str {]}
+    \str_remove_all:Nn \l_vectra_phone_str {-}
+    \str_remove_all:Nn \l_vectra_phone_str {.}
+    \str_remove_all:Nn \l_vectra_phone_str {/}
+    % Defined with x-expansion so that the name expands to the characters
+    % themselves. hyperref reads the URL without expanding an ordinary macro,
+    % so anything less leaves the control sequence in the link.
+    \cs_set:Npx \Vectra@phoneuri {\str_use:N \l_vectra_phone_str}
+}
+\ExplSyntaxOff
+
 \NewDocumentCommand{\Vectra@ContactPhone}{}{%
     \ifdefempty{\Vectra@phone}{}{%
-        \Vectra@ContactItem{\href{tel:\Vectra@phone}{\Vectra@phone}}%
+        \Vectra@SetPhoneURI{\Vectra@phone}%
+        \Vectra@ContactItem{\href{tel:\Vectra@phoneuri}{\Vectra@phone}}%
     }%
 }
 
@@ -184,9 +214,20 @@
 % ---------------------------------------------------------------------------
 % Header renderer
 % ---------------------------------------------------------------------------
+%
+% The block is centred with \centering inside a group rather than with the
+% center environment. center is a trivlist, and it adds \topsep and \parskip of
+% its own above and below the block -- about 10pt below at 11pt body size, on
+% top of whatever \VectraHeaderBottomSpace asks for. That made the documented
+% meaning of the parameter false: setting it to 0pt still left a gap larger than
+% the one between two sections, and no value could close it. With the
+% environment gone the parameter is the whole distance, which is what its name
+% claims and what a document needs in order to tune it.
 
 \NewDocumentCommand{\VectraMakeHeader}{}{%
-    \begin{center}
+    \par
+    \begingroup
+    \centering
         \begin{minipage}{\VectraHeaderWidth}
             \centering
             {\VectraNameFont \Vectra@name\par}
@@ -208,7 +249,8 @@
                 \par
             }%
         \end{minipage}
-    \end{center}
+    \par
+    \endgroup
     \vspace{\VectraHeaderBottomSpace}
 }
 

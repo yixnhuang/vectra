@@ -196,7 +196,7 @@ bullet lists, which is where this style is densest.
 **The option changes nothing for a document that does not pass it.** `compact`
 is purely additive: the academic style's measurements are exactly what they
 were before it existed. The PDF is not byte-identical to one built with v0.2.0,
-because v0.3.0 also writes `/Lang` into every document's catalogue.
+because v1.0.0 also writes `/Lang` into every document's catalogue.
 
 **How it works.** `vectra-compact.sty` redefines the lengths and macros that
 `vectra-design.sty` sets, and touches nothing in the layout, header, section or

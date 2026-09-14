@@ -12,7 +12,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-sections}[2026/09/12 v0.3.0 Vectra section commands]
+\ProvidesPackage{vectra-sections}[2026/09/13 v1.1.0 Vectra section commands]
 
 \RequirePackage{titlesec}
 
@@ -200,7 +200,9 @@
 \NewDocumentCommand{\VectraPublicationGroup}{m}{%
     \par
     \Vectra@CancelLastEntryGap
-    \vspace{\VectraPublicationGroupTopSpace}%
+    \ifVectra@sectionhascontent
+        \vspace{\VectraPublicationGroupTopSpace}%
+    \fi
     \noindent{\VectraPublicationGroupFont #1}%
     \par\vspace{\VectraPublicationGroupBottomSpace}%
     \Vectra@SetLastEntryGap{\VectraPublicationGroupBottomSpace}%

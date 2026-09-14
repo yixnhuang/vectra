@@ -6,7 +6,76 @@ Vectra follows a simple versioning scheme during early development. Public
 template interface changes, layout changes, documentation updates, and
 maintainer-facing design changes should be recorded here.
 
-## [0.3.0] - 2026-09-12
+## [1.1.0] - 2026-09-13
+
+### Added
+
+- Added `\VectraFooterPageConnector`, the word between the page number and the
+  total in the footer. `\VectraFooterPagePrefix` could already be translated
+  while the `of` beside it was fixed in the source, so a footer could not be
+  written in any language but English.
+
+### Fixed
+
+- Fixed the trailing entry gap record, which was set locally. An entry writes
+  the gap it just added and the next section cancels it, so the record has to
+  survive whatever grouping sits between the two. A document that wrapped
+  entries in braces -- to change a length or a font for one section -- lost the
+  record, the gap was never cancelled, and the following section sat a full
+  entry gap lower than the same section elsewhere. The register is now assigned
+  globally, and directly rather than through `\setlength`: `\setlength` is
+  robust, so a `\global` prefix in front of it does not reach the assignment
+  inside. The same applies to the flag that records whether a section has
+  printed content.
+- Fixed the telephone link. `\VectraSetPhone` takes a number written for a
+  person, such as `(734) 649-2336`, and the header linked it as `tel:` with
+  that text unchanged. A space ends a URI, so the link reached only `tel:((734`
+  and could not be dialled. The dialable form is now derived from the printed
+  one: spaces, brackets, dots and separating hyphens are removed, a leading `+`
+  is kept. The printed text is unchanged.
+- Fixed the top spacing of a publication group heading placed immediately after
+  a section title. Talk, media and teaching groups suppress their top space
+  there; the publication group did not, and sat 10 pt lower than the other
+  three in the same position.
+- Fixed the vertical rhythm so that every construct of the same level is
+  followed by the same distance, which several separate defects had broken.
+  The bullet label was a raised box, and a box in that position moves the
+  item's line 1.3pt off the leading and moves whatever follows the list 1.3pt
+  the other way, so an entry ending in bullets was followed by a different gap
+  than an entry ending in a line; the label is now a bare math bullet, which
+  already sits on the math axis the raise was reaching for. A one-column block
+  was implemented separately from a two-column one and closed 0.87pt higher, so
+  a section ending in a research-interests paragraph was followed by a smaller
+  gap than a section ending in an entry; it is now the same code with an empty
+  right column. `\parskip` is set at the beginning of the document rather than
+  at load time, where article's `\normalsize` put the elastic value back.
+- Fixed the order of the three vertical distances in the body. The space above
+  a section title was smaller than the gap between two entries, so the widest
+  break on the page fell inside a section and the narrower one between two: a
+  reader scanning the page saw the divisions in the wrong places. The order is
+  now title to first entry < entry to entry < entry to next section, in both
+  styles, and the design file records it as a rule any future change must keep.
+- Fixed the header block, which was centred with the center environment. That
+  environment adds spacing of its own above and below, about 10pt at 11pt body
+  size, on top of \VectraHeaderBottomSpace -- so the documented meaning of that
+  parameter was false and no value could close the gap. The block is centred
+  with \centering in a group, and the parameter is now the whole distance.
+- Fixed leading whitespace in an entry argument, which reached the page. An
+  argument written on its own line began with a space; the columns now start
+  with \ignorespaces.
+- Fixed the compact style's academic record groups, which kept the academic
+  style's spacing. A group heading would have taken 0.36 cm above it while the
+  section title above it took 0.14 cm, so a subdivision was spaced more
+  generously than the thing it subdivides. Group top and bottom spaces, the
+  publication note's bottom space and the indexed prefix column now follow the
+  compact measurements. The group fonts are left alone on purpose: this style
+  already sets a section title at body size, and a heading one step below that
+  would be smaller than the text it heads.
+- Corrected the version recorded in the source files, the changelog and the
+  README. The v1.0.0 release was tagged as 1.0.0 while every file still
+  declared 0.3.0, and the changelog section for it was still headed 0.3.0.
+
+## [1.0.0] - 2026-09-12
 
 ### Added
 

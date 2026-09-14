@@ -12,7 +12,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-footer}[2026/09/12 v0.3.0 Vectra footer settings]
+\ProvidesPackage{vectra-footer}[2026/09/13 v1.1.0 Vectra footer settings]
 
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
@@ -36,7 +36,7 @@
 }
 
 \NewDocumentCommand{\Vectra@FooterPageText}{}{%
-    \VectraFooterPagePrefix~\thepage\ of~\pageref*{LastPage}%
+    \VectraFooterPagePrefix~\thepage\ \VectraFooterPageConnector~\pageref*{LastPage}%
 }
 
 \NewDocumentCommand{\VectraSetupFooter}{}{%

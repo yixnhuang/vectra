@@ -12,7 +12,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{vectra-compact}[2026/09/12 v0.3.0 Vectra compact style overrides]
+\ProvidesPackage{vectra-compact}[2026/09/13 v1.1.0 Vectra compact style overrides]
 
 % ---------------------------------------------------------------------------
 % What this file is, and what it is not
@@ -92,8 +92,8 @@
 \renewcommand{\VectraContactFont}{\small}
 \renewcommand{\VectraHeaderWidth}{0.96\textwidth}
 
-\setlength{\VectraHeaderNameContactSpace}{0.06cm}
-\setlength{\VectraHeaderBottomSpace}{0.06cm}
+\setlength{\VectraHeaderNameContactSpace}{0.08cm}
+\setlength{\VectraHeaderBottomSpace}{0.08cm}
 
 \setlength{\VectraContactSeparatorSpace}{4pt}
 
@@ -110,23 +110,33 @@
 % asymmetry is what tells the eye a new block has started, and it is the one
 % piece of air in this file that was not cut to the minimum.
 
+% The top space keeps the order the academic style sets: a section boundary is
+% a wider break than the gap between two entries of one section, which is wider
+% than the space binding a title to its first entry. At 0.14cm it was equal to
+% the entry gap, so a page of this style showed no difference between changing
+% subject and continuing one. The margin between the three is narrower here than
+% in the academic style, which is the nature of a one-page document: the order
+% still has to hold, and it does.
+
 \renewcommand{\VectraSectionFont}{\normalsize\bfseries}
 
-\setlength{\VectraSectionTopSpace}{0.14cm}
-\setlength{\VectraSectionBottomSpace}{0.05cm}
+\setlength{\VectraSectionTopSpace}{0.23cm}
+\setlength{\VectraSectionBottomSpace}{0.06cm}
 
 % ---------------------------------------------------------------------------
 % Entry spacing
 % ---------------------------------------------------------------------------
 %
 % The major-entry gap is the most expensive value in the design. An academic CV
-% has perhaps fifteen of them, and 0.40cm each is well spent when the reader is
-% moving through pages of record. Here 0.14cm is enough, because every entry
-% also opens with a bold line and closes with an indented bullet list -- the
-% typography already announces the boundary, so the whitespace does not have to.
+% has perhaps fifteen of them, and the academic 0.28cm each is well spent when
+% the reader is moving through pages of record. Here 0.12cm is enough, because
+% every entry also opens with a bold line and closes with an indented bullet
+% list -- the typography already announces the boundary, so the whitespace does
+% not have to. It stays below the section top space above it, which is what
+% keeps a change of subject wider than a continuation of one.
 
-\setlength{\VectraMajorEntrySeparation}{0.14cm}
-\setlength{\VectraRecordEntrySeparation}{0.05cm}
+\setlength{\VectraMajorEntrySeparation}{0.15cm}
+\setlength{\VectraRecordEntrySeparation}{0.06cm}
 \setlength{\VectraCompactEntrySeparation}{0cm}
 \setlength{\VectraSkillEntrySeparation}{0.01cm}
 
@@ -138,7 +148,44 @@
 % academic 12pt, which at 10pt would read as a deeper indent than intended.
 
 \setlength{\VectraBulletLeftMargin}{9pt}
-\setlength{\VectraEntryBulletSeparation}{1pt}
+\setlength{\VectraEntryBulletSeparation}{1.25pt}
+
+% ---------------------------------------------------------------------------
+% Academic record groups
+% ---------------------------------------------------------------------------
+%
+% Publication, talk, media and teaching groups are a level below a section
+% title and a level above an entry, and that is what these values have to keep
+% true. Inheriting the academic ones broke it: a group heading would have taken
+% 0.36cm above it while the section title above it took 0.14cm, so the
+% subdivision would have been spaced more generously than the thing it
+% subdivides.
+%
+% The group fonts are deliberately not touched. This style already sets a
+% section title at body size, so a group heading one step smaller would be set
+% below the text it heads, which trades one inverted relationship for another.
+% What separates a section from a group here is the rule under the section
+% title, not the type size.
+
+\setlength{\VectraPublicationGroupTopSpace}{0.15cm}
+\setlength{\VectraPublicationGroupBottomSpace}{0.04cm}
+\setlength{\VectraTalkGroupTopSpace}{0.15cm}
+\setlength{\VectraTalkGroupBottomSpace}{0.04cm}
+\setlength{\VectraMediaGroupTopSpace}{0.15cm}
+\setlength{\VectraMediaGroupBottomSpace}{0.04cm}
+\setlength{\VectraTeachingGroupTopSpace}{0.15cm}
+\setlength{\VectraTeachingGroupBottomSpace}{0.04cm}
+
+\setlength{\VectraPublicationNoteBottomSpace}{0.04cm}
+
+% The indexed prefix column holds [C1] or [T1] at the body size, so it is a
+% typographic width rather than a fixed one: at 10pt the academic 0.85cm leaves
+% a gap the smaller label does not fill.
+
+\setlength{\VectraPublicationPrefixWidth}{0.78cm}
+\setlength{\VectraPublicationPrefixSeparation}{0.10cm}
+\setlength{\VectraIndexedEntryPrefixWidth}{0.78cm}
+\setlength{\VectraIndexedEntryPrefixSeparation}{0.10cm}
 
 % ---------------------------------------------------------------------------
 % Footer
