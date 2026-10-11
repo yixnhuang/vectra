@@ -31,7 +31,7 @@ maintainer-facing design changes should be recorded here.
   the gap it just added and the next section cancels it, so the record has to
   survive whatever grouping sits between the two. A document that wrapped
   entries in braces -- to change a length or a font for one section -- lost the
-  record, the gap was never cancelled, and the following section sat a full
+  record, the gap was never canceled, and the following section sat a full
   entry gap lower than the same section elsewhere. The register is now assigned
   globally, and directly rather than through `\setlength`: `\setlength` is
   robust, so a `\global` prefix in front of it does not reach the assignment
@@ -40,7 +40,7 @@ maintainer-facing design changes should be recorded here.
 - Fixed the telephone link. `\VectraSetPhone` takes a number written for a
   person, such as `(734) 649-2336`, and the header linked it as `tel:` with
   that text unchanged. A space ends a URI, so the link reached only `tel:((734`
-  and could not be dialled. The dialable form is now derived from the printed
+  and could not be dialed. The dialable form is now derived from the printed
   one: spaces, brackets, dots and separating hyphens are removed, a leading `+`
   is kept. The printed text is unchanged.
 - Fixed the top spacing of a publication group heading placed immediately after
@@ -65,10 +65,10 @@ maintainer-facing design changes should be recorded here.
   reader scanning the page saw the divisions in the wrong places. The order is
   now title to first entry < entry to entry < entry to next section, in both
   styles, and the design file records it as a rule any future change must keep.
-- Fixed the header block, which was centred with the center environment. That
+- Fixed the header block, which was centered with the center environment. That
   environment adds spacing of its own above and below, about 10pt at 11pt body
   size, on top of \VectraHeaderBottomSpace -- so the documented meaning of that
-  parameter was false and no value could close the gap. The block is centred
+  parameter was false and no value could close the gap. The block is centered
   with \centering in a group, and the parameter is now the whole distance.
 - Fixed leading whitespace in an entry argument, which reached the page. An
   argument written on its own line began with a space; the columns now start
@@ -98,18 +98,18 @@ maintainer-facing design changes should be recorded here.
 - Added `src/vectra-compact.sty`, which holds the compact style's design
   parameters. It redefines what `vectra-design.sty` sets and touches no macro in
   the layout, header, section or footer layers, so the two styles differ in
-  measurement and never in behaviour. The class loads it between `vectra-design`
+  measurement and never in behavior. The class loads it between `vectra-design`
   and `vectra-core`, because `vectra-core` is where the margin lengths reach
   `geometry`.
 - Documented both styles and their parameter differences in a new `Document
   Styles` section of the README.
 - Added `\VectraSetPDFLang`, which writes the document's natural language into
-  the PDF catalogue as `/Lang`. A screen reader chooses its pronunciation rules
+  the PDF catalog as `/Lang`. A screen reader chooses its pronunciation rules
   from that entry and otherwise falls back to the reading machine's locale, so
   an English document opened on a system configured for another language is
   read with the wrong phonology. WCAG 2.2 requires it at level A (3.1.1) and
   PDF/UA requires it of the document. Defaults to `en`; set `zh-CN` for a
-  Chinese document. hyperref's own `pdflang` key does not reach the catalogue
+  Chinese document. hyperref's own `pdflang` key does not reach the catalog
   when set this late under pdfTeX, which was verified against the generated
   file, so the entry is written directly.
 

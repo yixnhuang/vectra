@@ -188,7 +188,7 @@ direction of more content per page.
 
 `compact` is deliberately at the tight end of readable. Two limits are worth
 knowing before pushing it further. The vertical margins leave roughly a quarter
-of a centimetre over the unprintable edge most consumer printers reserve, so
+of a centimeter over the unprintable edge most consumer printers reserve, so
 going below 0.80 cm needs testing on the actual printer. And a line spread
 below about 0.95 makes descenders and the next line's ascenders interfere in
 bullet lists, which is where this style is densest.
@@ -196,17 +196,17 @@ bullet lists, which is where this style is densest.
 **The option changes nothing for a document that does not pass it.** `compact`
 is purely additive: the academic style's measurements are exactly what they
 were before it existed. The PDF is not byte-identical to one built with v0.2.0,
-because v1.0.0 also writes `/Lang` into every document's catalogue.
+because v1.0.0 also writes `/Lang` into every document's catalog.
 
 **How it works.** `vectra-compact.sty` redefines the lengths and macros that
 `vectra-design.sty` sets, and touches nothing in the layout, header, section or
 footer layers. The class loads it between design, whose values it overrides, and
 core, which hands the margins to `geometry`. The two styles can therefore differ
-in measurement but never in behaviour: a bug fixed in a section macro is fixed
+in measurement but never in behavior: a bug fixed in a section macro is fixed
 in both, and there is no second code path to keep in step.
 
 **Declare the document's language.** `\VectraSetPDFLang` writes `/Lang` into the
-PDF catalogue, which is what a screen reader reads to choose its pronunciation
+PDF catalog, which is what a screen reader reads to choose its pronunciation
 rules. Without it the reader uses its own locale, and an English CV opened on a
 system set to another language is read with the wrong phonology rather than
 merely the wrong accent. It defaults to `en`:

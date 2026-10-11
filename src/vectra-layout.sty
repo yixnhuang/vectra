@@ -220,7 +220,7 @@
 % next section or group heading, so they have to survive whatever grouping sits
 % between the two: a document that wraps entries in braces to change a length or
 % a font would otherwise lose the record, the trailing gap would not be
-% cancelled, and the next section would be pushed down by it.
+% canceled, and the next section would be pushed down by it.
 
 \NewDocumentCommand{\Vectra@ResetSectionContent}{}{%
     \global\Vectra@sectionhascontentfalse
@@ -259,7 +259,7 @@
 % list -- whose last line is as deep as its descenders happen to be -- would
 % otherwise be followed by a different distance than one that ends in a block,
 % whose last line ends on a strut. The two are the same level of thing and the
-% reader sees the difference, so the depth is normalised here, once, rather than
+% reader sees the difference, so the depth is normalized here, once, rather than
 % in each of the entry commands.
 
 \NewDocumentCommand{\Vectra@NormalizeDepth}{}{%
@@ -288,7 +288,7 @@
     \Vectra@SetLastEntryGap{\VectraSkillEntrySeparation}%
 }
 
-% The space before a bullet list is set with \vspace* and a normalised depth.
+% The space before a bullet list is set with \vspace* and a normalized depth.
 % A plain \vspace here was partly absorbed: the list's first line is shorter than
 % a text line, TeX computes the interline glue from that height, and about 1.3pt
 % of the requested separation disappeared into the calculation. The entry that

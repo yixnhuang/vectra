@@ -26,7 +26,7 @@
 %              section titles, less air between entries. The difference is
 %              entirely in the design parameters -- vectra-compact.sty
 %              redefines what vectra-design.sty set and touches no macro --
-%              so the two styles differ in measurement, never in behaviour.
+%              so the two styles differ in measurement, never in behavior.
 %
 % Any other option is passed to article, so [twoside] and friends still work.
 
